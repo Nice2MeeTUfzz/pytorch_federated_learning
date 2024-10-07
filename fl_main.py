@@ -144,6 +144,9 @@ def fed_run():
                 #     print(param_name, param_tensor)
 
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss)
+            elif config["client"]["fed_algo"] == 'Homomorphic':
+
+                pass
             elif config["client"]["fed_algo"] == 'SCAFFOLD':
                 client_dict[client_id].update(global_state_dict, scv_state)
                 state_dict, n_data, loss, delta_ccv_state = client_dict[client_id].train()
@@ -167,6 +170,8 @@ def fed_run():
             global_state_dict, avg_loss, _ = fed_server.agg()
         elif config["client"]["fed_algo"] == 'FedNova':
             global_state_dict, avg_loss, _ = fed_server.agg()
+        elif config["client"]["fed_algo"] == 'Homomorphic':
+            global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
 
         # Testing and flushing
         accuracy = fed_server.test()

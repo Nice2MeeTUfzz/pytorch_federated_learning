@@ -1,10 +1,12 @@
 from copy import deepcopy
+from importlib.metadata import metadata
 from time import sleep
 import time
+
 from security.secure_utils import global_pub_key
 from utils.models import *
 from torch.utils.data import DataLoader
-from utils.fed_utils import assign_dataset, init_model, gaussian_noise
+from utils.fed_utils import assign_dataset, init_model, gaussian_noise, model_encrypt
 from tqdm import tqdm
 
 
@@ -87,7 +89,7 @@ class FedClient(object):
         loss_func = nn.CrossEntropyLoss()
 
         # Training process
-        pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)   # 设置进度条
+        pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)  # 设置进度条
 
         for epoch in pbar_client_train:
             for step, (x, y) in enumerate(train_loader):
@@ -121,21 +123,10 @@ class FedClient(object):
         保存训练后的参数到.pth文件,可不保存
         """
         # torch.save(self.model.state_dict(), 'model_state_mnist.pth')
-        """
-        return 分割后的模型参数
-        """
+
         # 模型加密
-        encrypted_model = deepcopy(self.model)
-        encrypted_state_dict = {}
-        state_dict = encrypted_model.state_dict()
-        start_time = time.time()
-        for k in state_dict.keys():
-            list_w = state_dict[k].view(-1).cpu().tolist()
-            pbar_encrypted_list = tqdm(list_w, position=3, leave=False)
-            encrypted_list = []
-            for n in pbar_encrypted_list:
-                encrypted_list.append(global_pub_key.encrypt(n))
-            inter_time = time.time() - start_time
-            pbar_encrypted_list.set_description(f'encrypting the {k},cost time: {inter_time}')
-            encrypted_state_dict[k] = encrypted_list
-        return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
+        #   LeNet ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
+        encrypted_state_dict = model_encrypt(self.model, global_pub_key, keys_to_encrypt=['conv1.weight', 'conv1.bias'])
+        # print(encrypted_state_dict)
+        # return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
+        return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()

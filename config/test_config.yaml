@@ -1,16 +1,16 @@
 system:
-  num_client: 10
-  num_local_class: 10
+  num_client: 2
+  num_local_class: 2
   # CIFAR10, MNIST, CIFAR100
   dataset: "MNIST"
   iid: True
   model: "LeNet"
   i_seed: 235235
-  num_round: 20
+  num_round: 1
   res_root: 'results/MNIST'
 
 client:
-  fed_algo: 'FedAvg'
+  fed_algo: 'Homomorphic'
   lr: 0.001
   # cifar10:16 MNIST:64
   batch_size: 64

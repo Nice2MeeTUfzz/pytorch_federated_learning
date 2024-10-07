@@ -1,3 +1,5 @@
+from torch.onnx.symbolic_opset9 import tensor
+
 from utils.models import *
 import torch
 from torch.utils.data import DataLoader
@@ -36,7 +38,8 @@ class FedServer(object):
         # Initialize the global machine learning model
         self._num_class, self._image_dim, self._image_channel = assign_dataset(dataset_id)
         self.model_name = model_name
-        self.model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
+        self.model = init_model(model_name=self.model_name, num_class=self._num_class,
+                                image_channel=self._image_channel)
 
     def load_testset(self, testset):
         """
@@ -85,6 +88,45 @@ class FedServer(object):
                 self.selected_clients.append(client_id)
                 self.n_data += self.client_n_data[client_id]
 
+    def agg_hm_en(self):
+        """
+        Server aggregates models using homomorphic encryption from connected clients.
+        :return: model_state: Updated global model after aggregation
+        :return: avg_loss: Averaged loss value
+        :return: n_data: Number of the local data points
+        """
+        client_num = len(self.selected_clients)
+        if client_num == 0 or self.n_data == 0:
+            return self.model.state_dict(), 0, 0
+
+        # Initialize a model for aggregation
+        model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
+        model_state = model.state_dict()
+        avg_loss = 0
+
+        # Homomorphic encryption aggregation
+        for i, name in enumerate(self.selected_clients):
+            if name not in self.client_state:
+                continue
+            for key in self.client_state[name]:
+                print(f"-------i={i}-------------")
+                print(f"-------k={key}-----------")
+                if i == 0:
+                    model_state[key] = list(
+                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key][0]))
+                    print(f"length of self.client_state[{name}][{key}][0]: {self.client_state[name][key][0]}")
+                    print(f"length of self.client_n_data[{name}]:{self.client_n_data}")
+                    print(f"length of model_state[{key}]:{len(model_state[key])}")
+                else:
+                    model_state[key] = model_state[key] + list(
+                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key][0]))
+            avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
+        # Server load the aggregated model as the global model
+        # self.model.load_state_dict(model_state)
+        self.round = self.round + 1
+        n_data = self.n_data
+        return model_state, avg_loss, n_data
+
     def agg(self):
         """
         Server aggregates models from connected clients.
@@ -114,7 +156,7 @@ class FedServer(object):
 
             avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
         # Server load the aggregated model as the global model
-        self.model.load_state_dict(model_state)
+        # self.model.load_state_dict(model_state)
         self.round = self.round + 1
         n_data = self.n_data
 

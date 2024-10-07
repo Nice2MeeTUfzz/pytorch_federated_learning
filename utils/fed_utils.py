@@ -1,4 +1,7 @@
 from utils.models import *
+from copy import deepcopy
+import time
+from tqdm import tqdm
 
 
 def assign_dataset(dataset_name):
@@ -95,3 +98,40 @@ def gaussian_noise(data_shape, s, sigma, generator, device=None):
     Gaussian noise
     """
     return torch.normal(0, sigma * s, data_shape, generator=torch.manual_seed(generator)).to(device)
+
+
+def model_encrypt(model, pub_key, keys_to_encrypt):
+    """
+    this method is to encrypt the model with Paillier encryption, use pub_key and choose several keys to encrypt.
+    :param model: Model name
+    :param pub_key: Paillier public key
+    :param keys_to_encrypt: List of keys of model to encrypt
+    :return: encrypted model
+    """
+    encrypted_model = deepcopy(model)
+    encrypted_state_dict = {}
+    state_dict = encrypted_model.state_dict()
+    num_keys_to_test = 1
+    counter = 0
+    start_time = time.time()
+    for key in state_dict.keys():
+        if counter >= num_keys_to_test:
+            break
+        if key in keys_to_encrypt:
+            original_tensor = state_dict[key]
+            meta_data = {
+                'shape': original_tensor.shape,
+                'dtype': original_tensor.dtype
+            }
+            list_w = state_dict[key].view(-1).cpu().tolist()
+            pbar_encrypted_list = tqdm(list_w, position=3, leave=False)
+            encrypted_list = []
+            for n in pbar_encrypted_list:
+                encrypted_list.append(pub_key.encrypt(n))
+            inter_time = time.time() - start_time
+            pbar_encrypted_list.set_description(f'encrypting the {key},cost time: {inter_time}')
+            encrypted_state_dict[key] = (encrypted_list, meta_data)
+        else:
+            encrypted_state_dict[key] = state_dict[key]
+        counter += 1
+    return encrypted_state_dict
