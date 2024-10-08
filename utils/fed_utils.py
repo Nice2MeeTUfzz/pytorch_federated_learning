@@ -100,15 +100,15 @@ def gaussian_noise(data_shape, s, sigma, generator, device=None):
     return torch.normal(0, sigma * s, data_shape, generator=torch.manual_seed(generator)).to(device)
 
 
-def model_encrypt(model, pub_key, keys_to_encrypt):
+def model_encrypt(ori_model, pub_key, keys_to_encrypt):
     """
     this method is to encrypt the model with Paillier encryption, use pub_key and choose several keys to encrypt.
-    :param model: Model name
+    :param ori_model: Model name
     :param pub_key: Paillier public key
     :param keys_to_encrypt: List of keys of model to encrypt
-    :return: encrypted model
+    :return: encrypted model, encrypted_model_state_dict[key]=(encrypted_list, meta_data{'shape','dtype'})
     """
-    encrypted_model = deepcopy(model)
+    encrypted_model = deepcopy(ori_model)
     encrypted_state_dict = {}
     state_dict = encrypted_model.state_dict()
     num_keys_to_test = 1
@@ -118,11 +118,6 @@ def model_encrypt(model, pub_key, keys_to_encrypt):
         if counter >= num_keys_to_test:
             break
         if key in keys_to_encrypt:
-            original_tensor = state_dict[key]
-            meta_data = {
-                'shape': original_tensor.shape,
-                'dtype': original_tensor.dtype
-            }
             list_w = state_dict[key].view(-1).cpu().tolist()
             pbar_encrypted_list = tqdm(list_w, position=3, leave=False)
             encrypted_list = []
@@ -130,8 +125,24 @@ def model_encrypt(model, pub_key, keys_to_encrypt):
                 encrypted_list.append(pub_key.encrypt(n))
             inter_time = time.time() - start_time
             pbar_encrypted_list.set_description(f'encrypting the {key},cost time: {inter_time}')
-            encrypted_state_dict[key] = (encrypted_list, meta_data)
+            encrypted_state_dict[key] = encrypted_list
         else:
             encrypted_state_dict[key] = state_dict[key]
         counter += 1
     return encrypted_state_dict
+
+
+def model_decrypt(encrypted_model, private_key, model_shape_type):
+    """
+    this method is to decrypt the model with Server's private_key
+    :param encrypted_model: {'key', list}
+    :param private_key: Server's private_key
+    :param model_shape_type: model's shape and dtype
+    """
+    decrypted_state_dict = {} # store the decrypted model parameters
+    for key, encrypted_list in encrypted_model.items():
+        decrypted_list = [private_key.decrypt(ciphertext) for ciphertext in encrypted_list]# decrypted the value
+        original_dtype = model_shape_type[key].dtype
+        original_shape = model_shape_type[key].shape
+        tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
+        decrypted_state_dict[key] = tensor_param

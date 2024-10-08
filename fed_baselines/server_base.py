@@ -40,6 +40,11 @@ class FedServer(object):
         self.model_name = model_name
         self.model = init_model(model_name=self.model_name, num_class=self._num_class,
                                 image_channel=self._image_channel)
+        self.model_shape_type = {}
+
+        # privacy
+        self.public_key = 0
+        self.private_key = 0
 
     def load_testset(self, testset):
         """
@@ -88,6 +93,16 @@ class FedServer(object):
                 self.selected_clients.append(client_id)
                 self.n_data += self.client_n_data[client_id]
 
+    def set_model_shape_dtype(self):
+        """
+        Server store the initial model's shape and dtype.
+        """
+        for key, model_tensor in self.model.state_dict().items():
+            self.model_shape_type[key] = {
+                'dtype': model_tensor.dtype,
+                'shape': model_tensor.shape,
+            }
+
     def agg_hm_en(self):
         """
         Server aggregates models using homomorphic encryption from connected clients.
@@ -113,13 +128,13 @@ class FedServer(object):
                 print(f"-------k={key}-----------")
                 if i == 0:
                     model_state[key] = list(
-                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key][0]))
-                    print(f"length of self.client_state[{name}][{key}][0]: {self.client_state[name][key][0]}")
-                    print(f"length of self.client_n_data[{name}]:{self.client_n_data}")
-                    print(f"length of model_state[{key}]:{len(model_state[key])}")
+                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
+                    # print(f"length of self.client_state[{name}][{key}][0]: {self.client_state[name][key][0]}")
+                    # print(f"length of self.client_n_data[{name}]:{self.client_n_data}")
+                    # print(f"length of model_state[{key}]:{len(model_state[key])}")
                 else:
                     model_state[key] = model_state[key] + list(
-                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key][0]))
+                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
             avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
         # Server load the aggregated model as the global model
         # self.model.load_state_dict(model_state)

@@ -10,7 +10,7 @@ system:
   res_root: 'results/MNIST'
 
 client:
-  fed_algo: 'Homomorphic'
+  fed_algo: 'FedAvg'
   lr: 0.001
   # cifar10:16 MNIST:64
   batch_size: 64

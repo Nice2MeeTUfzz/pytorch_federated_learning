@@ -19,6 +19,7 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
+from utils.fed_utils import model_decrypt
 
 json_types = (list, dict, str, int, float, bool, type(None))
 
@@ -61,7 +62,7 @@ def fed_run():
         except yaml.YAMLError as exc:
             print(exc)
 
-    algo_list = ["FedAvg", "SCAFFOLD", "FedProx", "FedNova"]
+    algo_list = ["FedAvg", "SCAFFOLD", "FedProx", "FedNova", "Homomorphic"]
     assert config["client"]["fed_algo"] in algo_list, "The federated learning algorithm is not supported"
 
     dataset_list = ['MNIST', 'CIFAR10', 'FashionMNIST', 'SVHN', 'CIFAR100']
@@ -128,6 +129,7 @@ def fed_run():
         fed_server = FedNovaServer(trainset_config['users'], dataset_id=config["system"]["dataset"],
                                    model_name=config["system"]["model"])
     fed_server.load_testset(testset)
+    fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype
     global_state_dict = fed_server.state_dict()
 
     # Main process of federated learning in multiple communication rounds
@@ -163,7 +165,10 @@ def fed_run():
         # Global aggregation
         fed_server.select_clients()
         if config["client"]["fed_algo"] == 'FedAvg':
-            global_state_dict, avg_loss, _ = fed_server.agg()
+            # global_state_dict, avg_loss, _ = fed_server.agg()
+            global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
+            global_state_dict = model_decrypt(global_state_dict, fed_server.private_key,
+                                              fed_server.model_shape_type)  # decrypt the encrypted global model
         elif config["client"]["fed_algo"] == 'SCAFFOLD':
             global_state_dict, avg_loss, _, scv_state = fed_server.agg()  # scarffold
         elif config["client"]["fed_algo"] == 'FedProx':
