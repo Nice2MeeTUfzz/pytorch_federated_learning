@@ -146,3 +146,4 @@ def model_decrypt(encrypted_model, private_key, model_shape_type):
         original_shape = model_shape_type[key].shape
         tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
         decrypted_state_dict[key] = tensor_param
+    return decrypted_state_dict

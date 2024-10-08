@@ -140,6 +140,8 @@ def fed_run():
             # Local training
             if config["client"]["fed_algo"] == 'FedAvg':
                 client_dict[client_id].update(global_state_dict)
+                # several clients join to recover the secret number with their secret shares.
+                client_dict[client_id].recover_model(secret_number=secret_number)
                 state_dict, n_data, loss = client_dict[client_id].train()
                 # 查看梯度
                 # for param_name, param_tensor in state_dict.items():
@@ -147,7 +149,6 @@ def fed_run():
 
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss)
             elif config["client"]["fed_algo"] == 'Homomorphic':
-
                 pass
             elif config["client"]["fed_algo"] == 'SCAFFOLD':
                 client_dict[client_id].update(global_state_dict, scv_state)

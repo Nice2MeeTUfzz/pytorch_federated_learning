@@ -18,7 +18,8 @@ def key_split(sk, lambda_val, n):
 
 
 if __name__ == '__main__':
-    sk1, sk2 = key_split(privy_key, gmpy2.lcm(privy_key.p - 1, privy_key.q - 1), public_key.n)
-    print(f"sk1:{sk1}")
-    print(f"sk2:{sk2}")
+    # sk1, sk2 = key_split(privy_key, gmpy2.lcm(privy_key.p - 1, privy_key.q - 1), public_key.n)
+    # print(f"sk1:{sk1}")
+    # print(f"sk2:{sk2}")
     # key_split(privy_key, )
+    print(public_key)

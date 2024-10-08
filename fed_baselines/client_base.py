@@ -55,8 +55,9 @@ class FedClient(object):
         self.clip = 0.1
         self.seed = i_seed
 
-        # model encryption
-        # self.pk = pub_key
+        # model encrypt parameters
+        self.public_key = None
+        self.share = 0
 
     def load_trainset(self, trainset):
         """
@@ -74,6 +75,16 @@ class FedClient(object):
         self.model = init_model(model_name=self.model_name, num_class=self._num_class,
                                 image_channel=self._image_channel)
         self.model.load_state_dict(model_state_dict)
+
+    def recover_model(self, secret_number):
+        state_dict = self.model.state_dict()
+        for key in state_dict:
+            if isinstance(secret_number, (int, float)):
+                secret_tensor = torch.tensor(secret_number, dtype=state_dict[key].dtype, device=state_dict[key].device)
+                state_dict[key] -= secret_tensor
+            else:
+                raise TypeError("secret_number must be an int or float.")
+        self.model.load_state_dict(state_dict)
 
     def train(self):
         """
