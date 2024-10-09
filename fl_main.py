@@ -19,7 +19,7 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
-from utils.fed_utils import model_decrypt
+from utils.fed_utils import model_decrypt, save_client_weight
 
 json_types = (list, dict, str, int, float, bool, type(None))
 
@@ -90,6 +90,7 @@ def fed_run():
                                                      dataset_name=config["system"]["dataset"],
                                                      i_seed=config["system"]["i_seed"])
     max_acc = 0
+
     # Initialize the clients w.r.t. the federated learning algorithms and the specific federated settings
     for client_id in trainset_config['users']:
         if config["client"]["fed_algo"] == 'FedAvg':
@@ -164,7 +165,11 @@ def fed_run():
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
 
         # Global aggregation
+
+        # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
+        save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
+
         if config["client"]["fed_algo"] == 'FedAvg':
             # global_state_dict, avg_loss, _ = fed_server.agg()
             global_state_dict, avg_loss, _ = fed_server.agg_hm_en()

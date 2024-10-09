@@ -147,3 +147,15 @@ def model_decrypt(encrypted_model, private_key, model_shape_type):
         tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
         decrypted_state_dict[key] = tensor_param
     return decrypted_state_dict
+
+def save_client_weight(n_data,client_dict, select_clients_list):
+    """
+    this method is to set client weight
+    :param n_data: data selected by server from clients
+    :param client_dict: client state dict
+    :param select_clients_list: list of selected clients
+    """
+    for client_id in select_clients_list:
+        client_dict[client_id].set_weight(client_dict[client_id].n_data/n_data)
+
+def cal_secret_number():

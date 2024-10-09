@@ -32,6 +32,7 @@ class FedClient(object):
         self.num_workers = 4
         self.loss_rec = []
         self.n_data = 0
+        self.weight = 0 # client weight each global round
 
         # Initialize the local training and testing dataset
         self.trainset = None
@@ -66,6 +67,13 @@ class FedClient(object):
         """
         self.trainset = trainset
         self.n_data = len(trainset)
+
+    def set_weight(self, weight):
+        """
+        Client sets the weight each global round
+        :param weight: Weight
+        """
+        self.weight = weight
 
     def update(self, model_state_dict):
         """
