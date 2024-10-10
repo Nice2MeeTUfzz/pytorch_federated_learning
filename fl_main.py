@@ -19,7 +19,7 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
-from utils.fed_utils import model_decrypt, save_client_weight
+from utils.fed_utils import model_decrypt, save_client_weight, cal_secret_number, cal_and_set_secret_number
 
 json_types = (list, dict, str, int, float, bool, type(None))
 
@@ -132,6 +132,7 @@ def fed_run():
     fed_server.load_testset(testset)
     fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype
     global_state_dict = fed_server.state_dict()
+    fed_server.generate_pk_and_sk()  # generate the public key and private key.
 
     # Main process of federated learning in multiple communication rounds
     pbar_server_agg = tqdm(range(config["system"]["num_round"]), position=0, leave=True)
@@ -141,8 +142,8 @@ def fed_run():
             # Local training
             if config["client"]["fed_algo"] == 'FedAvg':
                 client_dict[client_id].update(global_state_dict)
-                # several clients join to recover the secret number with their secret shares.
-                client_dict[client_id].recover_model(secret_number=secret_number)
+                client_dict[client_id].set_public_key(fed_server.public_key)
+                client_dict[client_id].set_global_epoch(global_round)
                 state_dict, n_data, loss = client_dict[client_id].train()
                 # 查看梯度
                 # for param_name, param_tensor in state_dict.items():
@@ -169,6 +170,7 @@ def fed_run():
         # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
         save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
+        cal_and_set_secret_number(client_dict=client_dict)
 
         if config["client"]["fed_algo"] == 'FedAvg':
             # global_state_dict, avg_loss, _ = fed_server.agg()

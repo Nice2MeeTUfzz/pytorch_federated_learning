@@ -3,7 +3,6 @@ from importlib.metadata import metadata
 from time import sleep
 import time
 
-from security.secure_utils import global_pub_key
 from utils.models import *
 from torch.utils.data import DataLoader
 from utils.fed_utils import assign_dataset, init_model, gaussian_noise, model_encrypt
@@ -32,7 +31,7 @@ class FedClient(object):
         self.num_workers = 4
         self.loss_rec = []
         self.n_data = 0
-        self.weight = 0 # client weight each global round
+        self.weight = 0  # client weight each global round
 
         # Initialize the local training and testing dataset
         self.trainset = None
@@ -59,6 +58,8 @@ class FedClient(object):
         # model encrypt parameters
         self.public_key = None
         self.share = 0
+        self.secret_number = 0
+        self.global_epoch = 0
 
     def load_trainset(self, trainset):
         """
@@ -74,6 +75,27 @@ class FedClient(object):
         :param weight: Weight
         """
         self.weight = weight
+
+    def set_secret_number(self, secret_number):
+        """
+        Client sets the secret number each global round
+        :param secret_number: Secret number
+        """
+        self.secret_number = secret_number
+
+    def set_global_epoch(self, global_epoch):
+        """
+        Client sets the global epoch each global round.
+        :param global_epoch: Global epoch
+        """
+        self.global_epoch = global_epoch
+
+    def set_public_key(self, public_key):
+        """
+        Client sets the public key each global round.
+        :param public_key: Server's public key.
+        """
+        self.public_key = public_key
 
     def update(self, model_state_dict):
         """
@@ -106,6 +128,11 @@ class FedClient(object):
         optimizer = torch.optim.SGD(self.model.parameters(), lr=self._lr, momentum=self._momentum)
         # optimizer = torch.optim.Adam(self.model.parameters(), lr=self._lr, weight_decay=1e-4)
         loss_func = nn.CrossEntropyLoss()
+
+        # judge whether the model is initial
+        # recover the model with client's secret_numer
+        if self.global_epoch != 0:
+            self.recover_model(secret_number=self.secret_number)
 
         # Training process
         pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)  # 设置进度条
@@ -145,7 +172,7 @@ class FedClient(object):
 
         # 模型加密
         #   LeNet ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
-        encrypted_state_dict = model_encrypt(self.model, global_pub_key, keys_to_encrypt=['conv1.weight', 'conv1.bias'])
+        encrypted_state_dict = model_encrypt(self.model, self.public_key, keys_to_encrypt=['conv1.weight', 'conv1.bias'])
         # print(encrypted_state_dict)
         # return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
         return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()

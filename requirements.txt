@@ -10,3 +10,8 @@ scikit-learn~=0.24.2
 colorama~=0.4.4
 pykeops~=2.1
 pyyaml~=6.0
+
+phe~=1.4.0
+gmpy2~=2.2.1
+mod~=0.3.0
+pycryptodome~=3.20.0

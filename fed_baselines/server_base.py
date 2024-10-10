@@ -1,9 +1,8 @@
-from torch.onnx.symbolic_opset9 import tensor
-
 from utils.models import *
 import torch
 from torch.utils.data import DataLoader
 from utils.fed_utils import assign_dataset, init_model
+from phe import paillier
 
 
 class FedServer(object):
@@ -43,8 +42,8 @@ class FedServer(object):
         self.model_shape_type = {}
 
         # privacy
-        self.public_key = 0
-        self.private_key = 0
+        self.public_key = None
+        self.private_key = None
 
     def load_testset(self, testset):
         """
@@ -102,6 +101,11 @@ class FedServer(object):
                 'dtype': model_tensor.dtype,
                 'shape': model_tensor.shape,
             }
+
+    def generate_pk_and_sk(self):
+        global_pub_key, global_priv_key = paillier.generate_paillier_keypair()
+        self.public_key = global_pub_key
+        self.private_key = global_priv_key
 
     def agg_hm_en(self):
         """
