@@ -1,3 +1,4 @@
+import random
 from utils.models import *
 from copy import deepcopy
 import time
@@ -170,3 +171,15 @@ def cal_and_set_secret_number(client_dict):
         secret_number += client_dict[client_id].weight * client_dict[client_id].share
     for client_id in client_dict.values():
         client_id.set_secret_number(secret_number)
+
+
+def generate_secret_number(seed):
+    """
+    system generates secret number
+    :param seed: input the random seed
+    """
+    bit_length = 256
+    random.seed(seed)
+    max_value = (1 << bit_length) - 1
+    random_integer = random.randint(0, max_value)
+    return random_integer
