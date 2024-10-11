@@ -5,7 +5,7 @@ import time
 
 from utils.models import *
 from torch.utils.data import DataLoader
-from utils.fed_utils import assign_dataset, init_model, gaussian_noise, model_encrypt
+from utils.fed_utils import assign_dataset, init_model, gaussian_noise
 from tqdm import tqdm
 
 
@@ -35,8 +35,6 @@ class FedClient(object):
 
         # Initialize the local training and testing dataset
         self.trainset = None
-        self.test_set = None
-        self.test_batch_size = 200
 
         # Initialize the local model
         self._num_class, self._image_dim, self._image_channel = assign_dataset(dataset_id)
@@ -84,6 +82,13 @@ class FedClient(object):
         """
         self.secret_number = secret_number
 
+    def set_share(self, share):
+        """
+        Client sets share.
+        :param share: Share distributed by Secret number
+        """
+        self.share = share
+
     def set_global_epoch(self, global_epoch):
         """
         Client sets the global epoch each global round.
@@ -97,13 +102,6 @@ class FedClient(object):
         :param public_key: Server's public key.
         """
         self.public_key = public_key
-
-    def load_testset(self, testset):
-        """
-        Client loads the test dataset.
-        :param data: Dataset for testing.
-        """
-        self.test_set = testset
 
     def update(self, model_state_dict):
         """
@@ -180,28 +178,8 @@ class FedClient(object):
 
         # 模型加密
         #   LeNet ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
-        encrypted_state_dict = model_encrypt(self.model, self.public_key,
-                                             keys_to_encrypt=['conv1.weight', 'conv1.bias'])
+        # encrypted_state_dict = model_encrypt(self.model, self.public_key,
+        #                                      keys_to_encrypt=['conv1.weight', 'conv1.bias'])
         # print(encrypted_state_dict)
-        # return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
-        return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()
-
-    def test(self):
-        """
-        Client tests the model on test dataset.
-        :return: global model's accuracy of this global round.
-        """
-        test_loader = DataLoader(self.test_set, batch_size=self.test_batch_size, shuffle=True)
-        self.model.to(self._device)
-        accuracy_collector = 0
-        for step, (x, y) in enumerate(test_loader):
-            with torch.no_grad():
-                b_x = x.to(self._device)  # Tensor on GPU
-                b_y = y.to(self._device)  # Tensor on GPU
-
-                test_output = self.model(b_x)
-                pred_y = torch.max(test_output, 1)[1].to(self._device).data.squeeze()
-                accuracy_collector = accuracy_collector + sum(pred_y == b_y)
-        accuracy = accuracy_collector / len(self.test_set)
-
-        return accuracy.cpu().numpy()
+        return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
+        # return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()

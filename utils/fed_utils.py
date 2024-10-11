@@ -3,6 +3,7 @@ from utils.models import *
 from copy import deepcopy
 import time
 from tqdm import tqdm
+from torch.utils.data import DataLoader
 
 
 def assign_dataset(dataset_name):
@@ -177,6 +178,7 @@ def generate_secret_number(seed):
     """
     system generates secret number
     :param seed: input the random seed
+    :return: secret number
     """
     bit_length = 256
     random.seed(seed)
@@ -184,21 +186,10 @@ def generate_secret_number(seed):
     random_integer = random.randint(0, max_value)
     return random_integer
 
-def select_random_client_to_compute_accuracy(select_clients):
-    """
-    this method is to select client which to compute accuracy.
-    :param select_clients: list of selected clients
-    :return: selected client
-    """
-    if not select_clients:
-        raise ValueError('No client available to select from.')
-    selected_client = random.choice(select_clients)
-    return selected_client
 
-
-def split_secret_number(client_dict, seed):
+def generate_and_split_secret_number(client_dict, seed):
     """
-    this method is to split secret number into n parts.
+    this method is to generate and split secret number into n parts.
     :param client_dict: client state dict.
     :param seed: input the random seed
     """
@@ -214,7 +205,29 @@ def split_secret_number(client_dict, seed):
         last_part = secret_number - sum(parts)
     parts.append(last_part)
     random.shuffle(parts)
-    for client_id in client_dict:
-        client_dict[client_id].set_secret_number(secret_number - sum(parts))
+    for i, client_id in enumerate(client_dict):
+        client_dict[client_id].set_share(parts[i])
 
-    return parts
+
+def test_accuracy_of_global_model(global_model, test_set):
+    """
+    System tests the model on test dataset.
+    :param global_model: global model
+    :param test_set: test dataset
+    :return: global model's accuracy of this global round.
+    """
+    test_loader = DataLoader(test_set, batch_size=200, shuffle=True)
+    gpu = 0
+    device = torch.device("cuda:{}".format(gpu) if torch.cuda.is_available() and gpu != -1 else "cpu")
+    global_model.to(device)
+    accuracy_collector = 0
+    for step, (x, y) in enumerate(test_loader):
+        with torch.no_grad():
+            b_x = x.to(device)  # Tensor on GPU
+            b_y = y.to(device)  # Tensor on GPU
+
+            test_output = global_model(b_x)
+            pred_y = torch.max(test_output, 1)[1].to(device).data.squeeze()
+            accuracy_collector = accuracy_collector + sum(pred_y == b_y)
+    accuracy = accuracy_collector / len(test_set)
+    return accuracy.cpu().numpy()

@@ -19,8 +19,8 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
-from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, generate_secret_number, \
-    select_random_client_to_compute_accuracy
+from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, generate_and_split_secret_number, \
+    select_random_client_to_compute_accuracy, model_encrypt, test_accuracy_of_global_model
 
 json_types = (list, dict, str, int, float, bool, type(None))
 
@@ -91,8 +91,6 @@ def fed_run():
                                                      dataset_name=config["system"]["dataset"],
                                                      i_seed=config["system"]["i_seed"])
     max_acc = 0
-    # generate secret number to split, and distribute it to each client.
-    generate_secret_number(config["system"]["i_seed"])
 
     # Initialize the clients w.r.t. the federated learning algorithms and the specific federated settings
     for client_id in trainset_config['users']:
@@ -133,6 +131,8 @@ def fed_run():
         fed_server = FedNovaServer(trainset_config['users'], dataset_id=config["system"]["dataset"],
                                    model_name=config["system"]["model"])
 
+    # generate secret number to split, and distribute it to each client.
+    generate_and_split_secret_number(client_dict=client_dict, seed=config["system"]["i_seed"])
     # fed_server.load_testset(testset) # in this system, the model is invisible to the server.
     fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype.
     global_state_dict = fed_server.state_dict()
@@ -152,8 +152,10 @@ def fed_run():
                 # 查看梯度
                 # for param_name, param_tensor in state_dict.items():
                 #     print(param_name, param_tensor)
-
-                fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss)
+                Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
+                encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
+                                                           keys_to_encrypt=Construct_LeNet)
+                fed_server.rec(client_dict[client_id].name, encrypted_model_state_dict, n_data, loss)
             elif config["client"]["fed_algo"] == 'Homomorphic':
                 pass
             elif config["client"]["fed_algo"] == 'SCAFFOLD':
@@ -168,9 +170,9 @@ def fed_run():
                 client_dict[client_id].update(global_state_dict)
                 state_dict, n_data, loss, coeff, norm_grad = client_dict[client_id].train()
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
-
+        # System test the global model's accuracy.
+        accuracy = test_accuracy_of_global_model(global_state_dict, testset)
         # Global aggregation
-
         # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
         save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
@@ -191,9 +193,7 @@ def fed_run():
             global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
 
         # Testing and flushing
-        # accuracy = fed_server.test() # in our system, the accuracy is calculated by random client.
-        selected_client = select_random_client_to_compute_accuracy(fed_server.select_clients())
-        accuracy = client_dict[selected_client].test()
+        # accuracy = fed_server.test() # in our system, the accuracy is calculated by system.
         fed_server.flush()
 
         # Record the results
