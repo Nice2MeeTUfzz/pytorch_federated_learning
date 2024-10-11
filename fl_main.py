@@ -19,7 +19,8 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
-from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, generate_secret_number
+from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, generate_secret_number, \
+    select_random_client_to_compute_accuracy
 
 json_types = (list, dict, str, int, float, bool, type(None))
 
@@ -131,8 +132,9 @@ def fed_run():
     elif config["client"]["fed_algo"] == 'FedNova':
         fed_server = FedNovaServer(trainset_config['users'], dataset_id=config["system"]["dataset"],
                                    model_name=config["system"]["model"])
-    fed_server.load_testset(testset)
-    fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype
+
+    # fed_server.load_testset(testset) # in this system, the model is invisible to the server.
+    fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype.
     global_state_dict = fed_server.state_dict()
     fed_server.generate_pk_and_sk()  # generate the public key and private key.
 
@@ -189,7 +191,9 @@ def fed_run():
             global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
 
         # Testing and flushing
-        accuracy = fed_server.test()
+        # accuracy = fed_server.test() # in our system, the accuracy is calculated by random client.
+        selected_client = select_random_client_to_compute_accuracy(fed_server.select_clients())
+        accuracy = client_dict[selected_client].test()
         fed_server.flush()
 
         # Record the results

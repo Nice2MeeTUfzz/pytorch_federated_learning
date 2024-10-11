@@ -45,12 +45,13 @@ class FedServer(object):
         self.public_key = None
         self.private_key = None
 
-    def load_testset(self, testset):
-        """
-        Server loads the test dataset.
-        :param data: Dataset for testing.
-        """
-        self.testset = testset
+    # in this system, the model is invisible to the server.
+    # def load_testset(self, testset):
+    #     """
+    #     Server loads the test dataset.
+    #     :param data: Dataset for testing.
+    #     """
+    #     self.testset = testset
 
     def state_dict(self):
         """
@@ -59,24 +60,24 @@ class FedServer(object):
         """
         return self.model.state_dict()
 
-    def test(self):
-        """
-        Server tests the model on test dataset.
-        """
-        test_loader = DataLoader(self.testset, batch_size=self._batch_size, shuffle=True)
-        self.model.to(self._device)
-        accuracy_collector = 0
-        for step, (x, y) in enumerate(test_loader):
-            with torch.no_grad():
-                b_x = x.to(self._device)  # Tensor on GPU
-                b_y = y.to(self._device)  # Tensor on GPU
-
-                test_output = self.model(b_x)
-                pred_y = torch.max(test_output, 1)[1].to(self._device).data.squeeze()
-                accuracy_collector = accuracy_collector + sum(pred_y == b_y)
-        accuracy = accuracy_collector / len(self.testset)
-
-        return accuracy.cpu().numpy()
+    # def test(self):
+    #     """
+    #     Server tests the model on test dataset.
+    #     """
+    #     test_loader = DataLoader(self.testset, batch_size=self._batch_size, shuffle=True)
+    #     self.model.to(self._device)
+    #     accuracy_collector = 0
+    #     for step, (x, y) in enumerate(test_loader):
+    #         with torch.no_grad():
+    #             b_x = x.to(self._device)  # Tensor on GPU
+    #             b_y = y.to(self._device)  # Tensor on GPU
+    #
+    #             test_output = self.model(b_x)
+    #             pred_y = torch.max(test_output, 1)[1].to(self._device).data.squeeze()
+    #             accuracy_collector = accuracy_collector + sum(pred_y == b_y)
+    #     accuracy = accuracy_collector / len(self.testset)
+    #
+    #     return accuracy.cpu().numpy()
 
     def select_clients(self, connection_ratio=1):
         """
