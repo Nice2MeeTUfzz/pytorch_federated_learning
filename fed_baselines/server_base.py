@@ -129,8 +129,6 @@ class FedServer(object):
             if name not in self.client_state:
                 continue
             for key in self.client_state[name]:
-                print(f"-------i={i}-------------")
-                print(f"-------k={key}-----------")
                 if i == 0:
                     model_state[key] = list(
                         map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))

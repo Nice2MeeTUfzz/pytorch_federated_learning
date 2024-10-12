@@ -6,15 +6,15 @@ system:
   iid: True
   model: "LeNet"
   i_seed: 235235
-  num_round: 1
-  res_root: 'results/MNIST'
+  num_round: 2
+  res_root: 'results/'
 
 client:
   fed_algo: 'FedAvg'
   lr: 0.001
   # cifar10:16 MNIST:64
   batch_size: 64
-  num_local_epoch: 1
+  num_local_epoch: 2
   # add_noise: True or False
   add_noise: False
   sigma: 2

@@ -7,6 +7,7 @@ import argparse
 import yaml
 from json import JSONEncoder
 from tqdm import tqdm
+import logging
 
 from fed_baselines.client_base import FedClient
 from fed_baselines.client_fedprox import FedProxClient
@@ -19,10 +20,17 @@ from fed_baselines.server_fednova import FedNovaServer
 from postprocessing.recorder import Recorder
 from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_iid
 from utils.models import *
-from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, generate_and_split_secret_number, \
-    select_random_client_to_compute_accuracy, model_encrypt, test_accuracy_of_global_model
+from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, \
+    generate_and_split_secret_number, model_encrypt, test_accuracy_of_global_model
 
 json_types = (list, dict, str, int, float, bool, type(None))
+# logger
+logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler('result.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class PythonObjectEncoder(JSONEncoder):
@@ -141,18 +149,28 @@ def fed_run():
     # Main process of federated learning in multiple communication rounds
     pbar_server_agg = tqdm(range(config["system"]["num_round"]), position=0, leave=True)
     for global_round in pbar_server_agg:
+        accuracy = 0
         pbar_clients = tqdm(trainset_config['users'], position=1, leave=False)
+        random_client_id = random.choice(trainset_config['users'])
         for client_id in pbar_clients:
             # Local training
             if config["client"]["fed_algo"] == 'FedAvg':
                 client_dict[client_id].update(global_state_dict)
+                # judge whether the model is initial
+                # recover the model with client's secret_numer
+                if global_round != 0:
+                    client_dict[client_id].recover_model(secret_number=client_dict[client_id].secret_number)
+                # choose a random client to test the accuracy of the global model.
+                if client_id == random_client_id:
+                    accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
                 client_dict[client_id].set_public_key(fed_server.public_key)
                 client_dict[client_id].set_global_epoch(global_round)
                 state_dict, n_data, loss = client_dict[client_id].train()
                 # 查看梯度
                 # for param_name, param_tensor in state_dict.items():
                 #     print(param_name, param_tensor)
-                Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
+                Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias',
+                                   'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
                                                            keys_to_encrypt=Construct_LeNet)
                 fed_server.rec(client_dict[client_id].name, encrypted_model_state_dict, n_data, loss)
@@ -170,13 +188,11 @@ def fed_run():
                 client_dict[client_id].update(global_state_dict)
                 state_dict, n_data, loss, coeff, norm_grad = client_dict[client_id].train()
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
-        # System test the global model's accuracy.
-        accuracy = test_accuracy_of_global_model(global_state_dict, testset)
         # Global aggregation
         # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
         save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
-        cal_and_set_secret_number(client_dict=client_dict)
+        cal_and_set_secret_number(client_dict=client_dict,select_clients=fed_server.selected_clients)
 
         if config["client"]["fed_algo"] == 'FedAvg':
             # global_state_dict, avg_loss, _ = fed_server.agg()

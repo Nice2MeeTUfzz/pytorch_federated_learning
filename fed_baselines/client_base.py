@@ -135,11 +135,6 @@ class FedClient(object):
         # optimizer = torch.optim.Adam(self.model.parameters(), lr=self._lr, weight_decay=1e-4)
         loss_func = nn.CrossEntropyLoss()
 
-        # judge whether the model is initial
-        # recover the model with client's secret_numer
-        if self.global_epoch != 0:
-            self.recover_model(secret_number=self.secret_number)
-
         # Training process
         pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)  # 设置进度条
 
