@@ -25,7 +25,7 @@ from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secre
 
 json_types = (list, dict, str, int, float, bool, type(None))
 # logger
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('fl_main')
 logger.setLevel(level=logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler = logging.FileHandler('result.log')
@@ -148,11 +148,15 @@ def fed_run():
 
     # Main process of federated learning in multiple communication rounds
     pbar_server_agg = tqdm(range(config["system"]["num_round"]), position=0, leave=True)
+    logger.info("Training process start ...")
     for global_round in pbar_server_agg:
+        logger.info("global round : %d", global_round)
         accuracy = 0
         pbar_clients = tqdm(trainset_config['users'], position=1, leave=False)
         random_client_id = random.choice(trainset_config['users'])
+        logger.info("the random client id to test accuracy : %s", random_client_id)
         for client_id in pbar_clients:
+            logger.info("----- client id [%s] -----", client_id)
             # Local training
             if config["client"]["fed_algo"] == 'FedAvg':
                 client_dict[client_id].update(global_state_dict)
@@ -163,16 +167,20 @@ def fed_run():
                 # choose a random client to test the accuracy of the global model.
                 if client_id == random_client_id:
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
+                    logger.info("client_dict[%s] testing accuracy : %d", client_id, accuracy)
                 client_dict[client_id].set_public_key(fed_server.public_key)
                 client_dict[client_id].set_global_epoch(global_round)
+                logger.info("client_dict[%s] training ...", client_id)
                 state_dict, n_data, loss = client_dict[client_id].train()
                 # 查看梯度
                 # for param_name, param_tensor in state_dict.items():
                 #     print(param_name, param_tensor)
                 Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias',
                                    'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
+                logger.info("client_dict[%s] local model encrypting ...", client_id)
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
                                                            keys_to_encrypt=Construct_LeNet)
+                logger.info("Server receive client_dict[%s] info ...", client_id)
                 fed_server.rec(client_dict[client_id].name, encrypted_model_state_dict, n_data, loss)
             elif config["client"]["fed_algo"] == 'Homomorphic':
                 pass
@@ -188,11 +196,13 @@ def fed_run():
                 client_dict[client_id].update(global_state_dict)
                 state_dict, n_data, loss, coeff, norm_grad = client_dict[client_id].train()
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
+        logger.info("Server.client_n_data : %d", fed_server.client_n_data)
         # Global aggregation
+        logger.info("global aggregation process ...")
         # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
         save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
-        cal_and_set_secret_number(client_dict=client_dict,select_clients=fed_server.selected_clients)
+        cal_and_set_secret_number(client_dict=client_dict, select_clients=fed_server.selected_clients)
 
         if config["client"]["fed_algo"] == 'FedAvg':
             # global_state_dict, avg_loss, _ = fed_server.agg()

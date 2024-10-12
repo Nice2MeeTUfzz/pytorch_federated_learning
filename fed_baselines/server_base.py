@@ -3,6 +3,14 @@ import torch
 from torch.utils.data import DataLoader
 from utils.fed_utils import assign_dataset, init_model
 from phe import paillier
+import logging
+
+logger = logging.getLogger('server_base')
+logger.setLevel(level=logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler('result.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class FedServer(object):
@@ -97,6 +105,7 @@ class FedServer(object):
         """
         Server store the initial model's shape and dtype.
         """
+        logger.info("Server set model shape and dtype ...")
         for key, model_tensor in self.model.state_dict().items():
             self.model_shape_type[key] = {
                 'dtype': model_tensor.dtype,
@@ -104,9 +113,12 @@ class FedServer(object):
             }
 
     def generate_pk_and_sk(self):
+        logger.info("Server generate pk and sk ...")
         global_pub_key, global_priv_key = paillier.generate_paillier_keypair()
         self.public_key = global_pub_key
         self.private_key = global_priv_key
+        logger.info("Public key : %s", self.public_key)
+        logger.info("Private key : %s", self.private_key)
 
     def agg_hm_en(self):
         """
@@ -115,6 +127,7 @@ class FedServer(object):
         :return: avg_loss: Averaged loss value
         :return: n_data: Number of the local data points
         """
+        logger.info("Server aggregate model with homomorphic encryption ...")
         client_num = len(self.selected_clients)
         if client_num == 0 or self.n_data == 0:
             return self.model.state_dict(), 0, 0
@@ -130,14 +143,14 @@ class FedServer(object):
                 continue
             for key in self.client_state[name]:
                 if i == 0:
-                    model_state[key] = list(
-                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
-                    # print(f"length of self.client_state[{name}][{key}][0]: {self.client_state[name][key][0]}")
-                    # print(f"length of self.client_n_data[{name}]:{self.client_n_data}")
-                    # print(f"length of model_state[{key}]:{len(model_state[key])}")
+                    # model_state[key] = list(
+                    #     map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
+                    model_state[key] = self.client_state[name][key] * (self.client_n_data[name][key] / float(self.n_data))
                 else:
-                    model_state[key] = model_state[key] + list(
-                        map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
+                    model_state[key] = model_state[key] + self.client_state[name][key] * (self.client_n_data[name][key] / float(self.n_data))
+                    # model_state[key] = model_state[key] + list(
+                    #     map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
+                logger.info("the length of client_state[%s].%s : %d", name, key, len(model_state[key]))
             avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
         # Server load the aggregated model as the global model
         # self.model.load_state_dict(model_state)
@@ -145,40 +158,40 @@ class FedServer(object):
         n_data = self.n_data
         return model_state, avg_loss, n_data
 
-    def agg(self):
-        """
-        Server aggregates models from connected clients.
-        :return: model_state: Updated global model after aggregation
-        :return: avg_loss: Averaged loss value
-        :return: n_data: Number of the local data points
-        """
-        client_num = len(self.selected_clients)
-        if client_num == 0 or self.n_data == 0:
-            return self.model.state_dict(), 0, 0
-
-        # Initialize a model for aggregation
-        model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
-        model_state = model.state_dict()
-        avg_loss = 0
-
-        # Aggregate the local updated models from selected clients
-        for i, name in enumerate(self.selected_clients):
-            if name not in self.client_state:
-                continue
-            for key in self.client_state[name]:
-                if i == 0:
-                    model_state[key] = self.client_state[name][key] * self.client_n_data[name] / self.n_data
-                else:
-                    model_state[key] = model_state[key] + self.client_state[name][key] * self.client_n_data[
-                        name] / self.n_data
-
-            avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
-        # Server load the aggregated model as the global model
-        # self.model.load_state_dict(model_state)
-        self.round = self.round + 1
-        n_data = self.n_data
-
-        return model_state, avg_loss, n_data
+    # def agg(self):
+    #     """
+    #     Server aggregates models from connected clients.
+    #     :return: model_state: Updated global model after aggregation
+    #     :return: avg_loss: Averaged loss value
+    #     :return: n_data: Number of the local data points
+    #     """
+    #     client_num = len(self.selected_clients)
+    #     if client_num == 0 or self.n_data == 0:
+    #         return self.model.state_dict(), 0, 0
+    #
+    #     # Initialize a model for aggregation
+    #     model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
+    #     model_state = model.state_dict()
+    #     avg_loss = 0
+    #
+    #     # Aggregate the local updated models from selected clients
+    #     for i, name in enumerate(self.selected_clients):
+    #         if name not in self.client_state:
+    #             continue
+    #         for key in self.client_state[name]:
+    #             if i == 0:
+    #                 model_state[key] = self.client_state[name][key] * self.client_n_data[name] / self.n_data
+    #             else:
+    #                 model_state[key] = model_state[key] + self.client_state[name][key] * self.client_n_data[
+    #                     name] / self.n_data
+    #
+    #         avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
+    #     # Server load the aggregated model as the global model
+    #     # self.model.load_state_dict(model_state)
+    #     self.round = self.round + 1
+    #     n_data = self.n_data
+    #
+    #     return model_state, avg_loss, n_data
 
     def rec(self, name, state_dict, n_data, loss):
         """

@@ -2,11 +2,18 @@ from copy import deepcopy
 from importlib.metadata import metadata
 from time import sleep
 import time
-
+import logging
 from utils.models import *
 from torch.utils.data import DataLoader
 from utils.fed_utils import assign_dataset, init_model, gaussian_noise
 from tqdm import tqdm
+
+logger = logging.getLogger('client_base')
+logger.setLevel(level=logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler('result.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class FedClient(object):
@@ -68,7 +75,7 @@ class FedClient(object):
         self.trainset = trainset
         self.n_data = len(trainset)
 
-    def set_weight(self, weight):
+    def set_client_weight(self, weight):
         """
         Client sets the weight each global round
         :param weight: Weight

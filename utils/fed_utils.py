@@ -1,9 +1,17 @@
 import random
 from utils.models import *
 from copy import deepcopy
+import logging
 import time
 from tqdm import tqdm
 from torch.utils.data import DataLoader
+
+logger = logging.getLogger('fed_utils')
+logger.setLevel(level=logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler('result.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 def assign_dataset(dataset_name):
@@ -113,13 +121,15 @@ def model_encrypt(ori_model_state_dict, pub_key, keys_to_encrypt):
     encrypted_state_dict = {}
     state_dict = ori_model_state_dict
     # num_keys_to_test = 1
-    counter = 0
+    # counter = 0
     start_time = time.time()
     for key in state_dict.keys():
+        logger.info('encrypting key : %s', key)
         # if counter >= num_keys_to_test:
         #     break
         if key in keys_to_encrypt:
             list_w = state_dict[key].view(-1).cpu().tolist()
+            logger.info('key : %s, length : %d', key, len(list_w))
             pbar_encrypted_list = tqdm(list_w, position=3, leave=False)
             encrypted_list = []
             for n in pbar_encrypted_list:
@@ -127,25 +137,24 @@ def model_encrypt(ori_model_state_dict, pub_key, keys_to_encrypt):
             inter_time = time.time() - start_time
             pbar_encrypted_list.set_description(f'encrypting the {key},cost time: {inter_time}')
             encrypted_state_dict[key] = encrypted_list
-        else:
-            encrypted_state_dict[key] = state_dict[key]
-        counter += 1
+        # else:
+        #     encrypted_state_dict[key] = state_dict[key]
+        # counter += 1
     return encrypted_state_dict
 
 
-def model_decrypt(encrypted_model, private_key, model_shape_type):
+def model_decrypt(encrypted_model_state_dict, private_key, model_shape_type):
     """
     this method is to decrypt the model with Server's private_key
-    :param encrypted_model: {'key', list}
+    :param encrypted_model_state_dict: {'key', list}
     :param private_key: Server's private_key
     :param model_shape_type: model's shape and dtype
     """
     decrypted_state_dict = {}  # store the decrypted model parameters
-    for key, encrypted_list in encrypted_model.items():
+    for key, encrypted_list in encrypted_model_state_dict.items():
         decrypted_list = [private_key.decrypt(ciphertext) for ciphertext in encrypted_list]  # decrypted the value
         original_dtype = model_shape_type[key]['dtype']
         original_shape = model_shape_type[key]['shape']
-        print(f'the error key is {key}')
         tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
         decrypted_state_dict[key] = tensor_param
     return decrypted_state_dict
@@ -158,8 +167,11 @@ def save_client_weight(n_data, client_dict, select_clients_list):
     :param client_dict: client state dict
     :param select_clients_list: list of selected clients
     """
+    logger.info("server.n_data : %d", n_data)
     for client_id in select_clients_list:
-        client_dict[client_id].set_weight(client_dict[client_id].n_data / n_data)
+        logger.info("client_dict[%s].n_data : %d", client_id, client_dict[client_id].n_data)
+        client_dict[client_id].set_client_weight(client_dict[client_id].n_data / float(n_data))
+        logger.info("client_dict[%s].weight : %d", client_id, client_dict[client_id].weight)
 
 
 def cal_and_set_secret_number(client_dict, select_clients):
@@ -172,6 +184,7 @@ def cal_and_set_secret_number(client_dict, select_clients):
         secret_number += client_dict[client_id].weight * client_dict[client_id].share
     for client_id in select_clients:
         client_dict[client_id].set_secret_number(secret_number)
+    logger.info("recover secret number by clients: %d", secret_number)
 
 
 def generate_secret_number(seed):
@@ -193,10 +206,12 @@ def generate_and_split_secret_number(client_dict, seed):
     :param client_dict: client state dict.
     :param seed: input the random seed
     """
+    logger.info('generating secret number and splitting it ...')
     n = len(client_dict)
     if n <= 0:
         raise ValueError("the number of client need larger than 0.")
     secret_number = generate_secret_number(seed)
+    logger.info('secret_number : %d', secret_number)
     random.seed(seed)
     parts = [random.randint(0, secret_number) for _ in range(n - 1)]
     last_part = secret_number - sum(parts)
@@ -207,6 +222,7 @@ def generate_and_split_secret_number(client_dict, seed):
     random.shuffle(parts)
     for i, client_id in enumerate(client_dict):
         client_dict[client_id].set_share(parts[i])
+        logger.info('client_dict[%s].share : %d', client_id, client_dict[client_id].share)
 
 
 def test_accuracy_of_global_model(global_model, test_set):
