@@ -29,6 +29,7 @@ class FedServer(object):
         # batch size for testing
         self._batch_size = 200
         self.client_list = client_list
+        self.client_weight = {}
 
         # Initialize the test dataset
         self.testset = None
@@ -133,8 +134,9 @@ class FedServer(object):
             return self.model.state_dict(), 0, 0
 
         # Initialize a model for aggregation
-        model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
-        model_state = model.state_dict()
+        # model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
+        # model_state = model.state_dict()
+        model_state = {}
         avg_loss = 0
 
         # Homomorphic encryption aggregation
@@ -143,14 +145,11 @@ class FedServer(object):
                 continue
             for key in self.client_state[name]:
                 if i == 0:
-                    # model_state[key] = list(
-                    #     map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
-                    model_state[key] = self.client_state[name][key] * (self.client_n_data[name][key] / float(self.n_data))
+                    model_state[key] = [value * self.client_weight[name] for value in self.client_state[name][key]]
+                    # model_state[key] = self.client_state[name][key] * (self.client_n_data[name] / float(self.n_data))
                 else:
-                    model_state[key] = model_state[key] + self.client_state[name][key] * (self.client_n_data[name][key] / float(self.n_data))
-                    # model_state[key] = model_state[key] + list(
-                    #     map(lambda x: x * (self.client_n_data[name] / self.n_data), self.client_state[name][key]))
-                logger.info("the length of client_state[%s].%s : %d", name, key, len(model_state[key]))
+                    key_list = [value * self.client_weight[name] for value in self.client_state[name][key]]
+                    model_state[key] = [a + b for a, b in zip(model_state[key], key_list)]
             avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
         # Server load the aggregated model as the global model
         # self.model.load_state_dict(model_state)

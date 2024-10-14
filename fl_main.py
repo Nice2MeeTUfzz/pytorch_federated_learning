@@ -23,6 +23,8 @@ from utils.models import *
 from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, \
     generate_and_split_secret_number, model_encrypt, test_accuracy_of_global_model
 
+
+torch.set_default_dtype(torch.float64)
 json_types = (list, dict, str, int, float, bool, type(None))
 # logger
 logger = logging.getLogger('fl_main')
@@ -88,12 +90,12 @@ def fed_run():
     recorder = Recorder()
 
     if config["system"]["iid"]:
-        print("data_divide is iid")
+        logger.info("data divide is iid")
         trainset_config, testset = divide_data_iid(num_client=config["system"]["num_client"],
                                                    dataset_name=config["system"]["dataset"],
                                                    i_seed=config["system"]["i_seed"])
     else:
-        print("data_divide is non-iid")
+        logger.info("data divide is non-iid")
         trainset_config, testset = divide_data_noiid(num_client=config["system"]["num_client"],
                                                      num_local_class=config["system"]["num_local_class"],
                                                      dataset_name=config["system"]["dataset"],
@@ -159,15 +161,15 @@ def fed_run():
             logger.info("----- client id [%s] -----", client_id)
             # Local training
             if config["client"]["fed_algo"] == 'FedAvg':
-                client_dict[client_id].update(global_state_dict)
                 # judge whether the model is initial
-                # recover the model with client's secret_numer
                 if global_round != 0:
-                    client_dict[client_id].recover_model(secret_number=client_dict[client_id].secret_number)
+                    # recover the model with client's secret_numer
+                    client_dict[client_id].recover_model()
+                client_dict[client_id].update(global_state_dict)
                 # choose a random client to test the accuracy of the global model.
                 if client_id == random_client_id:
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
-                    logger.info("client_dict[%s] testing accuracy : %d", client_id, accuracy)
+                    logger.info("client_dict[%s] testing accuracy : %f", client_id, accuracy)
                 client_dict[client_id].set_public_key(fed_server.public_key)
                 client_dict[client_id].set_global_epoch(global_round)
                 logger.info("client_dict[%s] training ...", client_id)
@@ -196,12 +198,11 @@ def fed_run():
                 client_dict[client_id].update(global_state_dict)
                 state_dict, n_data, loss, coeff, norm_grad = client_dict[client_id].train()
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
-        logger.info("Server.client_n_data : %d", fed_server.client_n_data)
         # Global aggregation
         logger.info("global aggregation process ...")
         # server selects clients and saves the weight of each selected clients
         fed_server.select_clients()
-        save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients)
+        save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients, fed_server)
         cal_and_set_secret_number(client_dict=client_dict, select_clients=fed_server.selected_clients)
 
         if config["client"]["fed_algo"] == 'FedAvg':

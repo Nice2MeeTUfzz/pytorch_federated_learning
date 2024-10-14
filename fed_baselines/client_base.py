@@ -38,7 +38,7 @@ class FedClient(object):
         self.num_workers = 4
         self.loss_rec = []
         self.n_data = 0
-        self.weight = 0  # client weight each global round
+        self.weight = 0.0  # client weight each global round
 
         # Initialize the local training and testing dataset
         self.trainset = None
@@ -63,8 +63,8 @@ class FedClient(object):
 
         # model encrypt parameters
         self.public_key = None
-        self.share = 0
-        self.secret_number = 0
+        self.share = 0.0
+        self.secret_number = 0.0
         self.global_epoch = 0
 
     def load_trainset(self, trainset):
@@ -119,12 +119,14 @@ class FedClient(object):
                                 image_channel=self._image_channel)
         self.model.load_state_dict(model_state_dict)
 
-    def recover_model(self, secret_number):
+    def recover_model(self):
         state_dict = self.model.state_dict()
         for key in state_dict:
-            if isinstance(secret_number, (int, float)):
-                secret_tensor = torch.tensor(secret_number, dtype=state_dict[key].dtype, device=state_dict[key].device)
+            if isinstance(self.secret_number, (int, float)):
+                logger.info("model_state_dict[%s] : %s", key, state_dict[key])
+                secret_tensor = torch.tensor(self.secret_number, dtype=state_dict[key].dtype, device=state_dict[key].device)
                 state_dict[key] -= secret_tensor
+                logger.info("recover_model_state_dict[%s] : %s", key, state_dict[key])
             else:
                 raise TypeError("secret_number must be an int or float.")
         self.model.load_state_dict(state_dict)
@@ -146,6 +148,7 @@ class FedClient(object):
         pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)  # 设置进度条
 
         for epoch in pbar_client_train:
+            logger.info("client_dict[%s] training epoch : %d", self.name, epoch)
             for step, (x, y) in enumerate(train_loader):
                 with torch.no_grad():
                     b_x = x.to(self._device)  # Tensor on GPU
@@ -179,9 +182,12 @@ class FedClient(object):
         # torch.save(self.model.state_dict(), 'model_state_mnist.pth')
 
         # 模型加密
-        #   LeNet ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
-        # encrypted_state_dict = model_encrypt(self.model, self.public_key,
-        #                                      keys_to_encrypt=['conv1.weight', 'conv1.bias'])
-        # print(encrypted_state_dict)
+        for key in self.model.state_dict():
+            model_tensor = self.model.state_dict()[key]
+            secret_tensor = torch.tensor(self.share, dtype=model_tensor.dtype, device=self._device)
+            if torch.isnan(secret_tensor).any() or torch.isinf(secret_tensor).any():
+                logger.error("secret_tensor for %s contains NaN or Inf values: %s", key, secret_tensor)
+                continue
+            self.model.state_dict()[key] += secret_tensor
         return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
         # return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()
