@@ -8,6 +8,7 @@ import yaml
 from json import JSONEncoder
 from tqdm import tqdm
 import logging
+import sys
 
 from fed_baselines.client_base import FedClient
 from fed_baselines.client_fedprox import FedProxClient
@@ -22,7 +23,6 @@ from preprocessing.baselines_dataloader import divide_data_noiid, divide_data_ii
 from utils.models import *
 from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secret_number, \
     generate_and_split_secret_number, model_encrypt, test_accuracy_of_global_model
-
 
 torch.set_default_dtype(torch.float64)
 json_types = (list, dict, str, int, float, bool, type(None))
@@ -141,49 +141,73 @@ def fed_run():
         fed_server = FedNovaServer(trainset_config['users'], dataset_id=config["system"]["dataset"],
                                    model_name=config["system"]["model"])
 
-    # generate secret number to split, and distribute it to each client.
+    # generate secret number and split it, and distribute share to each client.
     generate_and_split_secret_number(client_dict=client_dict, seed=config["system"]["i_seed"])
-    # fed_server.load_testset(testset) # in this system, the model is invisible to the server.
-    fed_server.set_model_shape_dtype()  # store the initial model's shape and dtype.
-    global_state_dict = fed_server.state_dict()
-    fed_server.generate_pk_and_sk()  # generate the public key and private key.
 
-    # Main process of federated learning in multiple communication rounds
-    pbar_server_agg = tqdm(range(config["system"]["num_round"]), position=0, leave=True)
+    # fed_server.load_testset(testset) # in this system, the model is invisible to the server.
+
+    # initial the fed_server
+    fed_server.set_model_shape_dtype()
+    global_state_dict = fed_server.state_dict()
+    fed_server.generate_pk_and_sk()
+
+    # Main process of federated learning in multiple communication rounds.
+    pbar_server_agg = tqdm(range(config["system"]["num_round"] + 1), position=0, leave=True)
     logger.info("Training process start ...")
     for global_round in pbar_server_agg:
         logger.info("global round : %d", global_round)
         accuracy = 0
         pbar_clients = tqdm(trainset_config['users'], position=1, leave=False)
+
+        # select random client to cal global_model accuracy.
         random_client_id = random.choice(trainset_config['users'])
         logger.info("the random client id to test accuracy : %s", random_client_id)
+
         for client_id in pbar_clients:
+            if client_id != random_client_id and global_round == config["system"]["num_round"] - 1:
+                continue
             logger.info("----- client id [%s] -----", client_id)
-            # Local training
+            # Local training.
             if config["client"]["fed_algo"] == 'FedAvg':
-                # judge whether the model is initial
-                if global_round != 0:
-                    # recover the model with client's secret_numer
-                    client_dict[client_id].recover_model()
+
+                # update the client_id's model_state as global_model.
                 client_dict[client_id].update(global_state_dict)
-                # choose a random client to test the accuracy of the global model.
-                if client_id == random_client_id:
+
+                # recover the model with client's secret_numer.
+                if global_round != 0:
+                    client_dict[client_id].recover_model()
+
+                # cal accuracy of global_model
+                if client_id == random_client_id and global_round != 0:
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
-                    logger.info("client_dict[%s] testing accuracy : %f", client_id, accuracy)
+                    logger.info("global round [%d] client_dict[%s].accuracy : %f", global_round, client_id,
+                                accuracy)
+                if client_id == random_client_id and global_round == config["system"]["num_round"] - 1:
+                    accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
+                    logger.info("Final accuracy : %f", accuracy)
+                    sys.exit(0)
+
+                # client_dict initial
                 client_dict[client_id].set_public_key(fed_server.public_key)
                 client_dict[client_id].set_global_epoch(global_round)
                 logger.info("client_dict[%s] training ...", client_id)
+
+                # local model train
                 state_dict, n_data, loss = client_dict[client_id].train()
-                # 查看梯度
-                # for param_name, param_tensor in state_dict.items():
-                #     print(param_name, param_tensor)
+
+                # keys list to encrypt
                 Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias',
                                    'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
                 logger.info("client_dict[%s] local model encrypting ...", client_id)
+
+                # encrypt the model with pk
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
                                                            keys_to_encrypt=Construct_LeNet)
                 logger.info("Server receive client_dict[%s] info ...", client_id)
+
+                # server receive the client_dict[client_id]'s message
                 fed_server.rec(client_dict[client_id].name, encrypted_model_state_dict, n_data, loss)
+
             elif config["client"]["fed_algo"] == 'Homomorphic':
                 pass
             elif config["client"]["fed_algo"] == 'SCAFFOLD':
@@ -198,18 +222,26 @@ def fed_run():
                 client_dict[client_id].update(global_state_dict)
                 state_dict, n_data, loss, coeff, norm_grad = client_dict[client_id].train()
                 fed_server.rec(client_dict[client_id].name, state_dict, n_data, loss, coeff, norm_grad)
+
         # Global aggregation
         logger.info("global aggregation process ...")
-        # server selects clients and saves the weight of each selected clients
+
+        # server selects clients and saves the weight of each client
         fed_server.select_clients()
         save_client_weight(fed_server.n_data, client_dict, fed_server.selected_clients, fed_server)
+
+        # cal secret number with weight and set to client_dict
         cal_and_set_secret_number(client_dict=client_dict, select_clients=fed_server.selected_clients)
 
         if config["client"]["fed_algo"] == 'FedAvg':
             # global_state_dict, avg_loss, _ = fed_server.agg()
+
+            # homomorphic encrypted aggregation
             global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
+
+            # decrypt the encrypted global model with server.sk
             global_state_dict = model_decrypt(global_state_dict, fed_server.private_key,
-                                              fed_server.model_shape_type)  # decrypt the encrypted global model
+                                              fed_server.model_shape_type)
         elif config["client"]["fed_algo"] == 'SCAFFOLD':
             global_state_dict, avg_loss, _, scv_state = fed_server.agg()  # scarffold
         elif config["client"]["fed_algo"] == 'FedProx':
@@ -220,11 +252,12 @@ def fed_run():
             global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
 
         # Testing and flushing
-        # accuracy = fed_server.test() # in our system, the accuracy is calculated by system.
+        # accuracy = fed_server.test() # in our system, the accuracy is calculated by client.
         fed_server.flush()
 
         # Record the results
-        recorder.res['server']['iid_accuracy'].append(accuracy)
+        if global_round != 0:
+            recorder.res['server']['iid_accuracy'].append(accuracy)
         recorder.res['server']['train_loss'].append(avg_loss)
 
         if max_acc < accuracy:

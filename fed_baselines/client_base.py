@@ -122,13 +122,10 @@ class FedClient(object):
     def recover_model(self):
         state_dict = self.model.state_dict()
         for key in state_dict:
-            if isinstance(self.secret_number, (int, float)):
-                logger.info("model_state_dict[%s] : %s", key, state_dict[key])
-                secret_tensor = torch.tensor(self.secret_number, dtype=state_dict[key].dtype, device=state_dict[key].device)
-                state_dict[key] -= secret_tensor
-                logger.info("recover_model_state_dict[%s] : %s", key, state_dict[key])
-            else:
-                raise TypeError("secret_number must be an int or float.")
+            # logger.info("model_state_dict[%s] : %s", key, state_dict[key])
+            secret_tensor = torch.tensor(self.secret_number, dtype=torch.float64, device=state_dict[key].device)
+            state_dict[key] -= secret_tensor
+            # logger.info("recover_model_state_dict[%s] : %s", key, state_dict[key])
         self.model.load_state_dict(state_dict)
 
     def train(self):
@@ -183,8 +180,7 @@ class FedClient(object):
 
         # 模型加密
         for key in self.model.state_dict():
-            model_tensor = self.model.state_dict()[key]
-            secret_tensor = torch.tensor(self.share, dtype=model_tensor.dtype, device=self._device)
+            secret_tensor = torch.tensor(self.share, dtype=torch.float64, device=self._device)
             if torch.isnan(secret_tensor).any() or torch.isinf(secret_tensor).any():
                 logger.error("secret_tensor for %s contains NaN or Inf values: %s", key, secret_tensor)
                 continue

@@ -139,7 +139,7 @@ def model_encrypt(ori_model_state_dict, pub_key, keys_to_encrypt):
             inter_time = end_time - start_time
             minutes, seconds = divmod(inter_time, 60)
             formated_time = f"{int(minutes)}m {int(seconds)}s"
-            logger.info('encrypting key : %s, length : %d, cost time : %s', key, len(list_w), formated_time)
+            logger.info('encrypting key [%s].length : %d, cost time : %s', key, len(list_w), formated_time)
             encrypted_state_dict[key] = encrypted_list
     return encrypted_state_dict
 
@@ -159,7 +159,6 @@ def model_decrypt(encrypted_model_state_dict, private_key, model_shape_type):
         tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
         decrypted_state_dict[key] = tensor_param
         logger.info("decrypting key [%s].shape [%s]", key, decrypted_state_dict[key].shape)
-        logger.info("decrypted key [%s] : %s", key, decrypted_state_dict[key])
     return decrypted_state_dict
 
 
@@ -199,7 +198,7 @@ def generate_secret_number(seed):
     :param seed: input the random seed
     :return: secret number
     """
-    bit_length = 52 # max
+    bit_length = 12 # max
     random.seed(seed)
     max_value = (1 << bit_length) - 1
     random_integer = random.randint(0, max_value)
