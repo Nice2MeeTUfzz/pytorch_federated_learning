@@ -6,7 +6,7 @@ system:
   iid: True
   model: "LeNet"
   i_seed: 235235
-  num_round: 10
+  num_round: 15
   res_root: 'results/'
 
 client:

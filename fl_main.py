@@ -26,6 +26,7 @@ from utils.fed_utils import model_decrypt, save_client_weight, cal_and_set_secre
 
 torch.set_default_dtype(torch.float64)
 json_types = (list, dict, str, int, float, bool, type(None))
+
 # logger
 logger = logging.getLogger('fl_main')
 logger.setLevel(level=logging.DEBUG)
@@ -164,7 +165,7 @@ def fed_run():
         logger.info("the random client id to test accuracy : %s", random_client_id)
 
         for client_id in pbar_clients:
-            if client_id != random_client_id and global_round == config["system"]["num_round"] - 1:
+            if client_id != random_client_id and global_round == config["system"]["num_round"]:
                 continue
             logger.info("----- client id [%s] -----", client_id)
             # Local training.
@@ -182,8 +183,11 @@ def fed_run():
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
                     logger.info("global round [%d] client_dict[%s].accuracy : %f", global_round, client_id,
                                 accuracy)
-                if client_id == random_client_id and global_round == config["system"]["num_round"] - 1:
+
+                # the final global round
+                if client_id == random_client_id and global_round == config["system"]["num_round"]:
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
+                    recorder.res['server']['iid_accuracy'].append(accuracy)
                     logger.info("Final accuracy : %f", accuracy)
                     sys.exit(0)
 
@@ -263,7 +267,7 @@ def fed_run():
         if max_acc < accuracy:
             max_acc = accuracy
         pbar_server_agg.set_description(
-            'Global Round: %d' % int(global_round + 1) +
+            'Global Round: %d' % int(global_round - 1) +
             '| Train loss: %.4f ' % avg_loss +
             '| Accuracy: %.4f' % accuracy +
             '| Max Acc: %.4f' % max_acc)
@@ -276,8 +280,7 @@ def fed_run():
                                                              '\'%s\',' % config["system"]["model"] +
                                                              str(config["system"]["num_client"]) + ',' +
                                                              str(config["system"]["num_round"]) + ',' +
-                                                             str(config["client"]["num_local_epoch"]) + ',' +
-                                                             str(config["client"]["sigma"])
+                                                             str(config["client"]["num_local_epoch"])
 
                                ) + ']', "w") as jsfile:
             json.dump(recorder.res, jsfile, cls=PythonObjectEncoder)

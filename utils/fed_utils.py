@@ -172,7 +172,6 @@ def save_client_weight(n_data, client_dict, select_clients_list, server):
     """
     logger.info("server.n_data : %d", n_data)
     for client_id in select_clients_list:
-        logger.info("client_dict[%s].n_data : %d", client_id, client_dict[client_id].n_data)
         client_dict[client_id].set_client_weight(float(client_dict[client_id].n_data) / float(n_data))
         server.client_weight[client_id] = client_dict[client_id].weight
         logger.info("client_dict[%s].weight : %f", client_id, client_dict[client_id].weight)
