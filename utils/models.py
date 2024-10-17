@@ -167,13 +167,19 @@ class CNN(nn.Module):
 
 
 if __name__ == "__main__":
-    model_name_list = ["ResNet18", "ResNet34", "ResNet50", "ResNet101", "ResNet152"]
-    for model_name in model_name_list:
-        model = generate_resnet(num_classes=10, in_channels=1, model_name=model_name)
-        model_parameters = filter(lambda p: p.requires_grad, model.parameters())
-        param_len = sum([np.prod(p.size()) for p in model_parameters])
-        print('Number of model parameters of %s :' % model_name, ' %d ' % param_len)
+    # model_name_list = ["ResNet18", "ResNet34", "ResNet50", "ResNet101", "ResNet152"]
+    # for model_name in model_name_list:
+    #     model = generate_resnet(num_classes=10, in_channels=1, model_name=model_name)
+    #     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
+    #     param_len = sum([np.prod(p.size()) for p in model_parameters])
+    #     print('Number of model parameters of %s :' % model_name, ' %d ' % param_len)
     # model = models.resnet18(pretrained=False)
     # model_path = "../checkpoints/resnet18-5c106cde.pth"
     # state_dict = torch.load(model_path, map_location=torch.device("cpu"))
     # model.load_state_dict(state_dict)
+    model = AlexCifarNet()
+    state_dict = model.state_dict()
+    list = []
+    for key in state_dict.keys():
+        list.append(key)
+    print(list)

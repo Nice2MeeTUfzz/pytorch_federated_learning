@@ -49,6 +49,21 @@ def as_python_object(dct):
     return dct
 
 
+def save_2_result(config, recorder):
+    # Save the results
+    if not os.path.exists(config["system"]["res_root"]):
+        os.makedirs(config["system"]["res_root"])
+
+    with open(os.path.join(config["system"]["res_root"], '[\'%s\',' % config["client"]["fed_algo"] +
+                                                         '\'%s\',' % config["system"]["model"] +
+                                                         str(config["system"]["num_client"]) + ',' +
+                                                         str(config["system"]["num_round"]) + ',' +
+                                                         str(config["client"]["num_local_epoch"])
+
+                           ) + ']', "w") as jsfile:
+        json.dump(recorder.res, jsfile, cls=PythonObjectEncoder)
+
+
 def fed_args():
     """
     Arguments for running federated learning baselines
@@ -188,6 +203,7 @@ def fed_run():
                 if client_id == random_client_id and global_round == config["system"]["num_round"]:
                     accuracy = test_accuracy_of_global_model(client_dict[client_id].model, testset)
                     recorder.res['server']['iid_accuracy'].append(accuracy)
+                    save_2_result(config, recorder)
                     logger.info("Final accuracy : %f", accuracy)
                     sys.exit(0)
 
@@ -202,11 +218,15 @@ def fed_run():
                 # keys list to encrypt
                 Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias',
                                    'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
+                Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias',
+                                  'classifier.0.weight', 'classifier.0.bias', 'classifier.2.weight',
+                                  'classifier.2.bias', 'classifier.4.weight', 'classifier.4.bias']
+
                 logger.info("client_dict[%s] local model encrypting ...", client_id)
 
                 # encrypt the model with pk
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
-                                                           keys_to_encrypt=Construct_LeNet)
+                                                           keys_to_encrypt=Construct_AlexCifarNet)
                 logger.info("Server receive client_dict[%s] info ...", client_id)
 
                 # server receive the client_dict[client_id]'s message
@@ -267,7 +287,7 @@ def fed_run():
         if max_acc < accuracy:
             max_acc = accuracy
         pbar_server_agg.set_description(
-            'Global Round: %d' % int(global_round - 1) +
+            'Global Round: %d' % int(global_round + 1) +
             '| Train loss: %.4f ' % avg_loss +
             '| Accuracy: %.4f' % accuracy +
             '| Max Acc: %.4f' % max_acc)
