@@ -124,7 +124,7 @@ def model_encrypt(ori_model_state_dict, pub_key, keys_to_encrypt):
     state_dict = ori_model_state_dict
     for key in state_dict.keys():
         start_time = time.time()
-        # if counter >= num_keys_to_test:
+        # encrypt keys in list keys_to_encrypt[].
         if key in keys_to_encrypt:
             encrypted_list = []
             list_w = state_dict[key].view(-1).cpu().tolist()
@@ -137,28 +137,42 @@ def model_encrypt(ori_model_state_dict, pub_key, keys_to_encrypt):
                 encrypted_list.append(pub_key.encrypt(n))
             end_time = time.time()
             inter_time = end_time - start_time
-            minutes, seconds = divmod(inter_time, 60)
-            formated_time = f"{int(minutes)}m {int(seconds)}s"
+            formated_time = time_formate(inter_time)
             logger.info('encrypting key [%s].length : %d, cost time : %s', key, len(list_w), formated_time)
             encrypted_state_dict[key] = encrypted_list
+        else:
+            list_w = state_dict[key].view(-1).cpu().tolist()
+            inter_time = time.time() - start_time
+            formated_time = time_formate(inter_time)
+            encrypted_state_dict[key] = list_w
+            logger.info('load key [%s].length : %d, cost time : %s', key, len(list_w), formated_time)
+
     return encrypted_state_dict
 
 
-def model_decrypt(encrypted_model_state_dict, private_key, model_shape_type):
+def model_decrypt(encrypted_model_state_dict, private_key, model_shape_type, keys_to_encrypt):
     """
     this method is to decrypt the model with Server's private_key
     :param encrypted_model_state_dict: {'key', list}
     :param private_key: Server's private_key
     :param model_shape_type: model's shape and dtype
+    :param keys_to_encrypt: List of keys of model to decrypt
     """
     decrypted_state_dict = {}  # store the decrypted model parameters
-    for key, encrypted_list in encrypted_model_state_dict.items():
-        decrypted_list = [private_key.decrypt(ciphertext) for ciphertext in encrypted_list]  # decrypted the value
+    start_time = time.time()
+    for key, value in encrypted_model_state_dict.items():
+        if key in keys_to_encrypt:
+            decrypted_list = [private_key.decrypt(ciphertext) for ciphertext in value]  # decrypted the value
+        else:
+            decrypted_list = value
         original_dtype = model_shape_type[key]['dtype']
         original_shape = model_shape_type[key]['shape']
         tensor_param = torch.tensor(decrypted_list, dtype=original_dtype).reshape(original_shape)
         decrypted_state_dict[key] = tensor_param
         logger.info("decrypting key [%s].shape [%s]", key, decrypted_state_dict[key].shape)
+    inter_time = time.time() - start_time
+    formated_time = time_formate(inter_time)
+    logger.info("decrypt time : [%s]", formated_time)
     return decrypted_state_dict
 
 
@@ -252,3 +266,15 @@ def test_accuracy_of_global_model(global_model, test_set):
             accuracy_collector = accuracy_collector + sum(pred_y == b_y)
     accuracy = accuracy_collector / len(test_set)
     return accuracy.cpu().numpy()
+
+def time_formate(inter_time):
+    """
+    formate the cost time.
+    :param inter_time: inter time
+    :return: formatted time
+    """
+    minutes, seconds = divmod(inter_time, 60)
+    seconds, milliseconds = divmod(seconds, 1)
+    # 格式化时间为 "m分钟 s秒 ms毫秒" 形式
+    formated_time = f"{int(minutes)}m:{int(seconds)}s:{int(milliseconds * 1000)}ms"
+    return formated_time

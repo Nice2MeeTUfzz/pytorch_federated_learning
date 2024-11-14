@@ -5,7 +5,7 @@ import time
 import logging
 from utils.models import *
 from torch.utils.data import DataLoader
-from utils.fed_utils import assign_dataset, init_model, gaussian_noise
+from utils.fed_utils import assign_dataset, init_model, gaussian_noise, time_formate
 from tqdm import tqdm
 
 torch.set_default_dtype(torch.float64)
@@ -121,12 +121,14 @@ class FedClient(object):
         self.model.load_state_dict(model_state_dict)
 
     def recover_model(self):
+        start_time = time.time()
         state_dict = self.model.state_dict()
         for key in state_dict:
-            # logger.info("model_state_dict[%s] : %s", key, state_dict[key])
             secret_tensor = torch.tensor(self.secret_number, dtype=torch.float64, device=state_dict[key].device)
             state_dict[key] -= secret_tensor
-            # logger.info("recover_model_state_dict[%s] : %s", key, state_dict[key])
+        inter_time = time.time() - start_time
+        formated_time = time_formate(inter_time)
+        logger.info("recover model cost time : %s", formated_time)
         self.model.load_state_dict(state_dict)
 
     def train(self):
@@ -179,12 +181,16 @@ class FedClient(object):
         """
         # torch.save(self.model.state_dict(), 'model_state_mnist.pth')
 
-        # 模型加密
+        # model encode
+        start_time = time.time()
         for key in self.model.state_dict():
             secret_tensor = torch.tensor(self.share, dtype=torch.float64, device=self._device)
             if torch.isnan(secret_tensor).any() or torch.isinf(secret_tensor).any():
                 logger.error("secret_tensor for %s contains NaN or Inf values: %s", key, secret_tensor)
                 continue
             self.model.state_dict()[key] += secret_tensor
+        inter_time = time.time() - start_time
+        formated_time = time_formate(inter_time)
+        logger.info("model encode time : %s", formated_time)
         return self.model.state_dict(), self.n_data, loss.data.cpu().numpy()
         # return encrypted_state_dict, self.n_data, loss.data.cpu().numpy()

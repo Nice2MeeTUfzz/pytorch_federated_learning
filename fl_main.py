@@ -178,7 +178,11 @@ def fed_run():
         # select random client to cal global_model accuracy.
         random_client_id = random.choice(trainset_config['users'])
         logger.info("the random client id to test accuracy : %s", random_client_id)
-
+        # keys list to encrypt
+        Construct_LeNet = ['conv1.weight', 'conv1.bias', 'fc3.weight', 'fc3.bias']
+        Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias',
+                                  'classifier.0.weight', 'classifier.0.bias', 'classifier.2.weight',
+                                  'classifier.2.bias', 'classifier.4.weight', 'classifier.4.bias']
         for client_id in pbar_clients:
             if client_id != random_client_id and global_round == config["system"]["num_round"]:
                 continue
@@ -215,18 +219,11 @@ def fed_run():
                 # local model train
                 state_dict, n_data, loss = client_dict[client_id].train()
 
-                # keys list to encrypt
-                Construct_LeNet = ['conv1.weight', 'conv1.bias', 'conv2.weight', 'conv2.bias', 'fc1.weight', 'fc1.bias',
-                                   'fc2.weight', 'fc2.bias', 'fc3.weight', 'fc3.bias']
-                Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias',
-                                  'classifier.0.weight', 'classifier.0.bias', 'classifier.2.weight',
-                                  'classifier.2.bias', 'classifier.4.weight', 'classifier.4.bias']
-
                 logger.info("client_dict[%s] local model encrypting ...", client_id)
 
                 # encrypt the model with pk
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
-                                                           keys_to_encrypt=Construct_AlexCifarNet)
+                                                           keys_to_encrypt=Construct_LeNet)
                 logger.info("Server receive client_dict[%s] info ...", client_id)
 
                 # server receive the client_dict[client_id]'s message
@@ -261,11 +258,11 @@ def fed_run():
             # global_state_dict, avg_loss, _ = fed_server.agg()
 
             # homomorphic encrypted aggregation
-            global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
+            global_state_dict, avg_loss, _ = fed_server.agg_hm_en(keys_to_encrypt=Construct_LeNet)
 
             # decrypt the encrypted global model with server.sk
             global_state_dict = model_decrypt(global_state_dict, fed_server.private_key,
-                                              fed_server.model_shape_type)
+                                              fed_server.model_shape_type, keys_to_encrypt=Construct_LeNet)
         elif config["client"]["fed_algo"] == 'SCAFFOLD':
             global_state_dict, avg_loss, _, scv_state = fed_server.agg()  # scarffold
         elif config["client"]["fed_algo"] == 'FedProx':

@@ -1,7 +1,8 @@
+import time
 from utils.models import *
 import torch
 from torch.utils.data import DataLoader
-from utils.fed_utils import assign_dataset, init_model
+from utils.fed_utils import assign_dataset, init_model, time_formate
 from phe import paillier
 import logging
 
@@ -115,13 +116,17 @@ class FedServer(object):
 
     def generate_pk_and_sk(self):
         logger.info("Server generate pk and sk ...")
+        start_time = time.time()
         global_pub_key, global_priv_key = paillier.generate_paillier_keypair()
+        inter_time = time.time() - start_time
+        formated_time = time_formate(inter_time)
+        logger.info("Server generate pk and sk done, time : {}".format(formated_time))
         self.public_key = global_pub_key
         self.private_key = global_priv_key
         logger.info("Public key : %s", self.public_key)
         logger.info("Private key : %s", self.private_key)
 
-    def agg_hm_en(self):
+    def agg_hm_en(self, keys_to_encrypt):
         """
         Server aggregates models using homomorphic encryption from connected clients.
         :return: model_state: Updated global model after aggregation
@@ -144,12 +149,17 @@ class FedServer(object):
             if name not in self.client_state:
                 continue
             for key in self.client_state[name]:
+                # if key in keys_to_encrypt:
                 if i == 0:
                     model_state[key] = [value * self.client_weight[name] for value in self.client_state[name][key]]
-                    # model_state[key] = self.client_state[name][key] * (self.client_n_data[name] / float(self.n_data))
                 else:
                     key_list = [value * self.client_weight[name] for value in self.client_state[name][key]]
                     model_state[key] = [a + b for a, b in zip(model_state[key], key_list)]
+                # else:
+                #     if i == 0:
+                #         model_state[key] = [value * self.client_weight[name] for value in self.client_state[name][key]]
+                #     else:
+                #         model_state[key] = model_state[key] + self.client_state[name][key] * self.client_weight[name]
             avg_loss = avg_loss + self.client_loss[name] * self.client_n_data[name] / self.n_data
         # Server load the aggregated model as the global model
         # self.model.load_state_dict(model_state)
