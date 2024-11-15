@@ -6,7 +6,7 @@ system:
   iid: True
   model: "AlexCifarNet"
   i_seed: 235235
-  num_round: 30
+  num_round: 10
   res_root: 'results/test'
 
 client:

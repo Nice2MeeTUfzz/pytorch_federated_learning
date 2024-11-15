@@ -179,10 +179,9 @@ def fed_run():
         random_client_id = random.choice(trainset_config['users'])
         logger.info("the random client id to test accuracy : %s", random_client_id)
         # keys list to encrypt
-        Construct_LeNet = ['conv1.weight', 'conv1.bias', 'fc3.weight', 'fc3.bias']
-        Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'features.4.weight', 'features.4.bias',
-                                  'classifier.0.weight', 'classifier.0.bias', 'classifier.2.weight',
-                                  'classifier.2.bias', 'classifier.4.weight', 'classifier.4.bias']
+        # Construct_LeNet = ['conv1.weight', 'conv1.bias', 'fc3.weight', 'fc3.bias']
+        Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'classifier.4.weight', 'classifier.4.bias']
+        keys_to_encrypt = Construct_AlexCifarNet
         for client_id in pbar_clients:
             if client_id != random_client_id and global_round == config["system"]["num_round"]:
                 continue
@@ -223,7 +222,7 @@ def fed_run():
 
                 # encrypt the model with pk
                 encrypted_model_state_dict = model_encrypt(state_dict, client_dict[client_id].public_key,
-                                                           keys_to_encrypt=Construct_LeNet)
+                                                           keys_to_encrypt=keys_to_encrypt)
                 logger.info("Server receive client_dict[%s] info ...", client_id)
 
                 # server receive the client_dict[client_id]'s message
@@ -258,11 +257,11 @@ def fed_run():
             # global_state_dict, avg_loss, _ = fed_server.agg()
 
             # homomorphic encrypted aggregation
-            global_state_dict, avg_loss, _ = fed_server.agg_hm_en(keys_to_encrypt=Construct_LeNet)
+            global_state_dict, avg_loss, _ = fed_server.agg_hm_en(keys_to_encrypt=keys_to_encrypt)
 
             # decrypt the encrypted global model with server.sk
             global_state_dict = model_decrypt(global_state_dict, fed_server.private_key,
-                                              fed_server.model_shape_type, keys_to_encrypt=Construct_LeNet)
+                                              fed_server.model_shape_type, keys_to_encrypt=keys_to_encrypt)
         elif config["client"]["fed_algo"] == 'SCAFFOLD':
             global_state_dict, avg_loss, _, scv_state = fed_server.agg()  # scarffold
         elif config["client"]["fed_algo"] == 'FedProx':
@@ -279,7 +278,9 @@ def fed_run():
         # Record the results
         if global_round != 0:
             recorder.res['server']['iid_accuracy'].append(accuracy)
+            logger.info("[global round : %d] aggregated model accuracy : %s", global_round, accuracy)
         recorder.res['server']['train_loss'].append(avg_loss)
+        logger.info("[global round : %d] aggregated model loss : %s", global_round, avg_loss)
 
         if max_acc < accuracy:
             max_acc = accuracy

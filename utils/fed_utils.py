@@ -78,6 +78,7 @@ def init_model(model_name, num_class, image_channel):
     :param image_channel: Number of image channels
     :return: The initialized model
     """
+    start_time = time.time()
     model = None
     if model_name == "ResNet18":
         model = generate_resnet(num_classes=num_class, in_channels=image_channel, model_name=model_name)
@@ -101,7 +102,8 @@ def init_model(model_name, num_class, image_channel):
         model = AlexCifarNet()
     else:
         print('Model is not supported')
-
+    inter_time = time.time()-start_time
+    logger.info("init global model cost time : {}".format(time_formate(inter_time)))
     return model
 
 
@@ -211,10 +213,11 @@ def generate_secret_number(seed):
     :param seed: input the random seed
     :return: secret number
     """
-    bit_length = 12 # max
     random.seed(seed)
+    bit_length = 24 # max
+    min_value = 1 << (bit_length - 1)
     max_value = (1 << bit_length) - 1
-    random_integer = random.randint(0, max_value)
+    random_integer = random.randint(min_value, max_value)
     return random_integer
 
 
@@ -231,13 +234,16 @@ def generate_and_split_secret_number(client_dict, seed):
     secret_number = generate_secret_number(seed)
     logger.info('secret_number : %f', secret_number)
     random.seed(seed)
-    parts = [random.randint(0, secret_number) for _ in range(n - 1)]
+    parts = []
+    for _ in range(n-1):
+        max_val = secret_number-sum(parts)
+        part = random.randint(1, max_val)
+        parts.append(part)
     last_part = secret_number - sum(parts)
-    while last_part <= 0:
-        parts = [random.randint(0, secret_number) for _ in range(n - 1)]
-        last_part = secret_number - sum(parts)
     parts.append(last_part)
+
     random.shuffle(parts)
+
     for i, client_id in enumerate(client_dict):
         part_64 = np.array(parts[i]).astype(np.float64)
         client_dict[client_id].set_share(part_64)

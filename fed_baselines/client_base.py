@@ -146,7 +146,7 @@ class FedClient(object):
 
         # Training process
         pbar_client_train = tqdm(range(self._epoch), position=2, leave=False)  # 设置进度条
-
+        train_start_time = time.time()
         for epoch in pbar_client_train:
             logger.info("client_dict[%s] training epoch : %d", self.name, epoch)
             for step, (x, y) in enumerate(train_loader):
@@ -176,6 +176,9 @@ class FedClient(object):
 
                 pbar_client_train.set_description(
                     'Client Epoch %d' % epoch)
+        train_inter_time = time.time() - train_start_time
+        train_formated_time = time_formate(train_inter_time)
+        logger.info("local model train cost time : %s", train_formated_time)
         """
         保存训练后的参数到.pth文件,可不保存
         """

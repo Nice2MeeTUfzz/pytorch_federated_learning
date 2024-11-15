@@ -145,6 +145,7 @@ class FedServer(object):
         avg_loss = 0
 
         # Homomorphic encryption aggregation
+        start_time = time.time()
         for i, name in enumerate(self.selected_clients):
             if name not in self.client_state:
                 continue
@@ -165,6 +166,9 @@ class FedServer(object):
         # self.model.load_state_dict(model_state)
         self.round = self.round + 1
         n_data = self.n_data
+        inter_time = time.time() - start_time
+        formated_time = time_formate(inter_time)
+        logger.info("Server aggregate model done, cost time : %s", formated_time)
         return model_state, avg_loss, n_data
 
     # def agg(self):

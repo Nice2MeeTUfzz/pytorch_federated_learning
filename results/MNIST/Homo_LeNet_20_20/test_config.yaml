@@ -1,19 +1,19 @@
 system:
-  num_client: 5
+  num_client: 20
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
-  dataset: "CIFAR10"
+  dataset: "MNIST"
   iid: True
-  model: "AlexCifarNet"
+  model: "LeNet"
   i_seed: 235235
-  num_round: 30
+  num_round: 20
   res_root: 'results/test'
 
 client:
   fed_algo: 'FedAvg'
   lr: 0.001
   # cifar10:16 MNIST:64
-  batch_size: 16
+  batch_size: 64
   num_local_epoch: 1
   # add_noise: True or False
   add_noise: False
