@@ -1,0 +1,1472 @@
+2024-10-16 09:28:30,176 - fl_main - INFO - data divide is iid
+2024-10-16 09:28:30,225 - fed_utils - INFO - generating secret number and splitting it ...
+2024-10-16 09:28:30,225 - fed_utils - INFO - secret_number : 3612.000000
+2024-10-16 09:28:30,225 - fed_utils - INFO - client_dict[f_00000].share : 36.000000
+2024-10-16 09:28:30,225 - fed_utils - INFO - client_dict[f_00001].share : 1910.000000
+2024-10-16 09:28:30,225 - fed_utils - INFO - client_dict[f_00002].share : 167.000000
+2024-10-16 09:28:30,225 - fed_utils - INFO - client_dict[f_00003].share : 1424.000000
+2024-10-16 09:28:30,225 - fed_utils - INFO - client_dict[f_00004].share : 75.000000
+2024-10-16 09:28:30,225 - server_base - INFO - Server set model shape and dtype ...
+2024-10-16 09:28:30,225 - server_base - INFO - Server generate pk and sk ...
+2024-10-16 09:28:30,282 - server_base - INFO - Public key : <PaillierPublicKey 6dccfa0907>
+2024-10-16 09:28:30,282 - server_base - INFO - Private key : <PaillierPrivateKey for <PaillierPublicKey 6dccfa0907>>
+2024-10-16 09:28:30,283 - fl_main - INFO - Training process start ...
+2024-10-16 09:28:30,283 - fl_main - INFO - global round : 0
+2024-10-16 09:28:30,284 - fl_main - INFO - the random client id to test accuracy : f_00000
+2024-10-16 09:28:30,284 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 09:28:30,285 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 09:28:32,862 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 09:28:33,975 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 09:28:35,389 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 09:28:35,437 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 09:28:54,920 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 09:28:55,058 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 09:35:25,655 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 30s
+2024-10-16 09:35:26,671 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 09:36:50,700 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 09:36:51,391 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 09:36:58,306 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 09:36:58,386 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 09:36:58,386 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 09:36:58,386 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 09:36:58,387 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 09:36:58,388 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 09:36:59,184 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 09:37:00,372 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 09:37:00,420 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 09:37:19,783 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 09:37:19,918 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 09:43:42,894 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 09:43:43,854 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 09:45:03,736 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 09:45:04,411 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 09:45:11,222 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 09:45:11,301 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 09:45:11,301 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 09:45:11,302 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 09:45:11,303 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 09:45:11,303 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 09:45:12,074 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 09:45:13,261 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 09:45:13,309 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 09:45:32,512 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 09:45:32,649 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 09:52:00,888 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 28s
+2024-10-16 09:52:01,860 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 09:53:24,651 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 22s
+2024-10-16 09:53:25,380 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 09:53:32,480 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 09:53:32,560 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 09:53:32,561 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 09:53:32,561 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 09:53:32,562 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 09:53:32,563 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 09:53:33,376 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 09:53:34,586 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 09:53:34,634 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 09:53:53,712 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 09:53:53,850 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:00:13,590 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 19s
+2024-10-16 10:00:14,549 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:01:35,205 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 10:01:35,884 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:01:42,527 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:01:42,606 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:01:42,606 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 10:01:42,606 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 10:01:42,607 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 10:01:42,608 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 10:01:43,395 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 10:01:44,584 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:01:44,632 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:02:03,794 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:02:03,931 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:08:26,109 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 10:08:27,070 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:09:47,736 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 10:09:48,418 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:09:55,108 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:09:55,188 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:09:55,188 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 10:09:55,188 - fl_main - INFO - global aggregation process ...
+2024-10-16 10:09:55,188 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 10:09:55,188 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 10:09:55,188 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 10:09:55,188 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 10:09:55,188 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 10:09:55,188 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 10:09:55,188 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 10:09:55,189 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 10:11:22,895 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 10:11:22,908 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 10:11:28,380 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 10:11:28,416 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 10:13:18,305 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 10:13:18,579 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 10:13:41,719 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 10:13:41,910 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 10:13:44,017 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 10:13:44,040 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 10:13:44,076 - fl_main - INFO - global round : 1
+2024-10-16 10:13:44,076 - fl_main - INFO - the random client id to test accuracy : f_00004
+2024-10-16 10:13:44,076 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 10:13:44,077 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 10:13:44,087 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 10:13:44,880 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 10:13:46,066 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:13:46,114 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:14:05,297 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:14:05,434 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:20:25,031 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 19s
+2024-10-16 10:20:25,997 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:21:45,941 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 10:21:46,615 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:21:53,259 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:21:53,339 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:21:53,354 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 10:21:53,354 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 10:21:53,355 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 10:21:53,356 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 10:21:54,148 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 10:21:55,334 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:21:55,382 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:22:14,551 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:22:14,688 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:28:42,109 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 27s
+2024-10-16 10:28:43,074 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:30:02,952 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 10:30:03,627 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:30:10,268 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:30:10,348 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:30:10,348 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 10:30:10,348 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 10:30:10,349 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 10:30:10,350 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 10:30:11,146 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 10:30:12,333 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:30:12,380 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:30:31,521 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:30:31,657 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:36:52,611 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 20s
+2024-10-16 10:36:53,729 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 10:38:17,811 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 10:38:18,487 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:38:25,555 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 10:38:25,640 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:38:25,640 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 10:38:25,641 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 10:38:25,643 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 10:38:25,644 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 10:38:26,455 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 10:38:27,792 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:38:27,841 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:38:48,303 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 20s
+2024-10-16 10:38:48,447 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:45:17,712 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 29s
+2024-10-16 10:45:18,673 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:46:39,562 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 10:46:40,240 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:46:47,056 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:46:47,136 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:46:47,136 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 10:46:47,136 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 10:46:47,928 - fl_main - INFO - global round [1] client_dict[f_00004].accuracy : 0.370400
+2024-10-16 10:46:47,929 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 10:46:47,929 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 10:46:48,745 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 10:46:49,941 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:46:49,990 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:47:09,249 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:47:09,398 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 10:53:37,928 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 28s
+2024-10-16 10:53:38,901 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 10:54:59,371 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 10:55:00,041 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 10:55:06,683 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 10:55:06,762 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 10:55:06,762 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 10:55:06,762 - fl_main - INFO - global aggregation process ...
+2024-10-16 10:55:06,762 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 10:55:06,762 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 10:55:06,763 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 10:55:06,763 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 10:55:06,763 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 10:55:06,763 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 10:55:06,763 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 10:55:06,763 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 10:56:34,196 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 10:56:34,210 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 10:56:39,686 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 10:56:39,723 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 10:58:29,324 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 10:58:29,601 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 10:58:53,171 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 10:58:53,367 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 10:58:55,325 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 10:58:55,348 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 10:58:55,383 - fl_main - INFO - global round : 2
+2024-10-16 10:58:55,383 - fl_main - INFO - the random client id to test accuracy : f_00004
+2024-10-16 10:58:55,383 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 10:58:55,384 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 10:58:55,397 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 10:58:56,243 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 10:58:57,449 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 10:58:57,498 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 10:59:16,684 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 10:59:16,820 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:05:42,755 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 25s
+2024-10-16 11:05:43,715 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:07:04,862 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 21s
+2024-10-16 11:07:05,544 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:07:12,214 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:07:12,293 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:07:12,308 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 11:07:12,309 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 11:07:12,310 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 11:07:12,311 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 11:07:13,101 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 11:07:14,290 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:07:14,338 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:07:33,494 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 11:07:33,631 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:13:54,142 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 20s
+2024-10-16 11:13:55,102 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:15:14,851 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:15:15,525 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:15:22,167 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:15:22,246 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:15:22,246 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 11:15:22,247 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 11:15:22,248 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 11:15:22,249 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 11:15:23,043 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 11:15:24,230 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:15:24,278 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:15:43,257 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 18s
+2024-10-16 11:15:43,393 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:22:05,519 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 11:22:06,479 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:23:26,191 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:23:26,861 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:23:33,503 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:23:33,582 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:23:33,582 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 11:23:33,583 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 11:23:33,584 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 11:23:33,585 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 11:23:34,374 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 11:23:35,564 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:23:35,612 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:23:54,675 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 11:23:54,813 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:30:15,688 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 20s
+2024-10-16 11:30:16,647 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:31:36,364 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:31:37,035 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:31:43,779 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:31:43,859 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:31:43,859 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 11:31:43,859 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 11:31:44,675 - fl_main - INFO - global round [2] client_dict[f_00004].accuracy : 0.688200
+2024-10-16 11:31:44,675 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 11:31:44,675 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 11:31:45,479 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 11:31:46,666 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:31:46,714 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:32:05,710 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 18s
+2024-10-16 11:32:05,847 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:38:25,468 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 19s
+2024-10-16 11:38:26,435 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:39:46,171 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:39:46,843 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:39:53,487 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:39:53,566 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:39:53,566 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 11:39:53,567 - fl_main - INFO - global aggregation process ...
+2024-10-16 11:39:53,567 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 11:39:53,567 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 11:39:53,567 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 11:39:53,567 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 11:39:53,567 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 11:39:53,567 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 11:39:53,567 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 11:39:53,567 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 11:41:21,172 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 11:41:21,186 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 11:41:26,668 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 11:41:26,705 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 11:43:16,299 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 11:43:16,573 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 11:43:39,567 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 11:43:39,759 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 11:43:41,680 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 11:43:41,703 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 11:43:41,735 - fl_main - INFO - global round : 3
+2024-10-16 11:43:41,736 - fl_main - INFO - the random client id to test accuracy : f_00003
+2024-10-16 11:43:41,736 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 11:43:41,737 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 11:43:41,753 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 11:43:42,551 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 11:43:43,739 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:43:43,787 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:44:02,811 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 11:44:02,948 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:50:22,511 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 19s
+2024-10-16 11:50:23,475 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:51:43,171 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:51:43,845 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:51:50,485 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:51:50,565 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:51:50,578 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 11:51:50,579 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 11:51:50,580 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 11:51:50,581 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 11:51:51,378 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 11:51:52,568 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 11:51:52,616 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 11:52:11,622 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 11:52:11,760 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 11:58:31,520 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 19s
+2024-10-16 11:58:32,475 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 11:59:52,197 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 11:59:52,871 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 11:59:59,525 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 11:59:59,604 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 11:59:59,604 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 11:59:59,604 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 11:59:59,605 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 11:59:59,606 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 12:00:00,397 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 12:00:01,585 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:00:01,633 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:00:20,648 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 12:00:20,785 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:06:40,924 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 20s
+2024-10-16 12:06:41,881 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 12:08:02,140 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 12:08:02,817 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:08:09,525 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 12:08:09,605 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:08:09,605 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 12:08:09,605 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 12:08:10,474 - fl_main - INFO - global round [3] client_dict[f_00003].accuracy : 0.868800
+2024-10-16 12:08:10,474 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 12:08:10,474 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 12:08:11,296 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 12:08:12,499 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:08:12,548 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:08:31,812 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 12:08:31,943 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:15:16,055 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 44s
+2024-10-16 12:15:17,101 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 12:16:41,249 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 12:16:42,011 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:16:48,923 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 12:16:49,004 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:16:49,004 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 12:16:49,004 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 12:16:49,006 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 12:16:49,007 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 12:16:50,105 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 12:16:51,379 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:16:51,431 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:17:11,336 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 12:17:11,487 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:23:54,296 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 42s
+2024-10-16 12:23:55,261 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 12:25:19,820 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 12:25:20,500 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:25:27,746 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 12:25:27,825 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:25:27,826 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 12:25:27,826 - fl_main - INFO - global aggregation process ...
+2024-10-16 12:25:27,826 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 12:25:27,826 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 12:25:27,826 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 12:25:27,826 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 12:25:27,826 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 12:25:27,826 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 12:25:27,826 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 12:25:27,826 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 12:27:00,498 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 12:27:00,512 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 12:27:06,201 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 12:27:06,242 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 12:29:01,783 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 12:29:02,074 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 12:29:26,463 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 12:29:26,677 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 12:29:28,651 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 12:29:28,674 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 12:29:28,708 - fl_main - INFO - global round : 4
+2024-10-16 12:29:28,709 - fl_main - INFO - the random client id to test accuracy : f_00002
+2024-10-16 12:29:28,709 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 12:29:28,710 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 12:29:28,716 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 12:29:29,524 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 12:29:30,743 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:29:30,798 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:29:50,709 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 12:29:50,859 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:36:35,968 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 45s
+2024-10-16 12:36:37,045 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 12:38:01,798 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 12:38:02,530 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:38:09,864 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 12:38:09,944 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:38:09,958 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 12:38:09,958 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 12:38:09,959 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 12:38:09,960 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 12:38:10,827 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 12:38:12,172 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:38:12,226 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:38:32,782 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 20s
+2024-10-16 12:38:32,914 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:45:17,077 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 44s
+2024-10-16 12:45:18,132 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 12:46:43,800 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 25s
+2024-10-16 12:46:44,482 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:46:51,554 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 12:46:51,641 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:46:51,641 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 12:46:51,641 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 12:46:52,520 - fl_main - INFO - global round [4] client_dict[f_00002].accuracy : 0.906900
+2024-10-16 12:46:52,520 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 12:46:52,520 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 12:46:53,343 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 12:46:54,554 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:46:54,603 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:47:14,787 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 20s
+2024-10-16 12:47:14,921 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 12:53:59,921 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 44s
+2024-10-16 12:54:00,927 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 12:55:25,568 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 24s
+2024-10-16 12:55:26,318 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 12:55:33,653 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 12:55:33,734 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 12:55:33,734 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 12:55:33,734 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 12:55:33,736 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 12:55:33,736 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 12:55:34,577 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 12:55:35,796 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 12:55:35,851 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 12:55:56,310 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 20s
+2024-10-16 12:55:56,466 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:02:40,385 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 43s
+2024-10-16 13:02:41,461 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 13:04:06,688 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 25s
+2024-10-16 13:04:07,420 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:04:14,471 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 7s
+2024-10-16 13:04:14,568 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:04:14,568 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 13:04:14,568 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 13:04:14,569 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 13:04:14,570 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 13:04:15,411 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 13:04:16,712 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:04:16,765 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:04:37,057 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 20s
+2024-10-16 13:04:37,205 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:11:21,862 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 44s
+2024-10-16 13:11:22,863 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 1s
+2024-10-16 13:12:48,021 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 25s
+2024-10-16 13:12:48,744 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:12:55,739 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:12:55,830 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:12:55,830 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 13:12:55,831 - fl_main - INFO - global aggregation process ...
+2024-10-16 13:12:55,831 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 13:12:55,831 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 13:12:55,831 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 13:12:55,831 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 13:12:55,831 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 13:12:55,831 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 13:12:55,831 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 13:12:55,831 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 13:14:29,271 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 13:14:29,287 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 13:14:35,221 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 13:14:35,258 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 13:16:25,217 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 13:16:25,491 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 13:16:48,504 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 13:16:48,695 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 13:16:50,613 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 13:16:50,636 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 13:16:50,668 - fl_main - INFO - global round : 5
+2024-10-16 13:16:50,668 - fl_main - INFO - the random client id to test accuracy : f_00001
+2024-10-16 13:16:50,668 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 13:16:50,669 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 13:16:50,687 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 13:16:51,499 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 13:16:52,688 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:16:52,736 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:17:11,743 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 13:17:11,881 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:23:32,866 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 20s
+2024-10-16 13:23:33,828 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 13:24:54,003 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 13:24:54,684 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:25:01,365 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:25:01,445 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:25:01,460 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 13:25:01,461 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 13:25:02,273 - fl_main - INFO - global round [5] client_dict[f_00001].accuracy : 0.918900
+2024-10-16 13:25:02,273 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 13:25:02,273 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 13:25:03,100 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 13:25:04,296 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:25:04,346 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:25:23,465 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 13:25:23,602 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:31:44,871 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 13:31:45,830 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 13:33:05,850 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 13:33:06,527 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:33:13,200 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:33:13,280 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:33:13,280 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 13:33:13,280 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 13:33:13,281 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 13:33:13,282 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 13:33:14,129 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 13:33:15,322 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:33:15,371 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:33:34,418 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 13:33:34,555 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:39:56,118 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 13:39:57,077 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 13:41:17,246 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 13:41:17,920 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:41:24,586 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:41:24,666 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:41:24,666 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 13:41:24,666 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 13:41:24,667 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 13:41:24,668 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 13:41:25,474 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 13:41:26,669 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:41:26,718 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:41:45,861 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 13:41:45,998 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:48:07,291 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 13:48:08,256 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 13:49:28,570 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 13:49:29,249 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:49:35,916 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:49:35,996 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:49:35,996 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 13:49:35,996 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 13:49:35,997 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 13:49:35,998 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 13:49:36,817 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 13:49:38,010 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 13:49:38,058 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 13:49:57,131 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 13:49:57,268 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 13:56:18,736 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 13:56:19,698 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 13:57:39,711 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 13:57:40,386 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 13:57:47,118 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 13:57:47,198 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 13:57:47,199 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 13:57:47,199 - fl_main - INFO - global aggregation process ...
+2024-10-16 13:57:47,199 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 13:57:47,199 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 13:57:47,199 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 13:57:47,199 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 13:57:47,199 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 13:57:47,199 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 13:57:47,199 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 13:57:47,199 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 13:59:14,705 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 13:59:14,718 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 13:59:20,192 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 13:59:20,228 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 14:01:09,688 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 14:01:09,963 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 14:01:32,957 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 14:01:33,150 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 14:01:35,066 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 14:01:35,089 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 14:01:35,122 - fl_main - INFO - global round : 6
+2024-10-16 14:01:35,122 - fl_main - INFO - the random client id to test accuracy : f_00002
+2024-10-16 14:01:35,122 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 14:01:35,123 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 14:01:35,141 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 14:01:35,973 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 14:01:37,165 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:01:37,213 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:01:56,335 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:01:56,472 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:08:17,831 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:08:18,798 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:09:38,904 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 14:09:39,582 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:09:46,269 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:09:46,349 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:09:46,363 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 14:09:46,363 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 14:09:46,364 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 14:09:46,365 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 14:09:47,171 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 14:09:48,363 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:09:48,412 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:10:07,470 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:10:07,607 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:16:28,962 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:16:29,933 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:17:49,908 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 14:17:50,582 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:17:57,262 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:17:57,343 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:17:57,343 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 14:17:57,344 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 14:17:58,156 - fl_main - INFO - global round [6] client_dict[f_00002].accuracy : 0.934100
+2024-10-16 14:17:58,157 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 14:17:58,157 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 14:17:58,973 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 14:18:00,166 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:18:00,215 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:18:19,472 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:18:19,610 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:24:41,163 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:24:42,128 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:26:02,392 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 14:26:03,066 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:26:09,741 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:26:09,821 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:26:09,821 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 14:26:09,821 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 14:26:09,822 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 14:26:09,823 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 14:26:10,639 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 14:26:11,842 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:26:11,890 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:26:31,007 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:26:31,146 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:32:52,440 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:32:53,400 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:34:13,485 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 14:34:14,162 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:34:20,829 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:34:20,909 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:34:20,909 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 14:34:20,909 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 14:34:20,911 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 14:34:20,911 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 14:34:21,709 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 14:34:22,900 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:34:22,950 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:34:42,005 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:34:42,142 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:41:03,612 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:41:04,571 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:42:24,728 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 14:42:25,402 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:42:32,069 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:42:32,149 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:42:32,149 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 14:42:32,149 - fl_main - INFO - global aggregation process ...
+2024-10-16 14:42:32,150 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 14:42:32,150 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 14:42:32,150 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 14:42:32,150 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 14:42:32,150 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 14:42:32,150 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 14:42:32,150 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 14:42:32,150 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 14:43:59,676 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 14:43:59,690 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 14:44:05,162 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 14:44:05,199 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 14:45:54,703 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 14:45:54,977 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 14:46:18,023 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 14:46:18,215 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 14:46:20,130 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 14:46:20,153 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 14:46:20,185 - fl_main - INFO - global round : 7
+2024-10-16 14:46:20,185 - fl_main - INFO - the random client id to test accuracy : f_00001
+2024-10-16 14:46:20,185 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 14:46:20,187 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 14:46:20,202 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 14:46:21,014 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 14:46:22,206 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:46:22,255 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:46:41,409 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:46:41,546 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 14:53:02,928 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 14:53:03,896 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 14:54:23,904 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 14:54:24,578 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 14:54:31,430 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 14:54:31,511 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 14:54:31,526 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 14:54:31,526 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 14:54:32,317 - fl_main - INFO - global round [7] client_dict[f_00001].accuracy : 0.941700
+2024-10-16 14:54:32,317 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 14:54:32,317 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 14:54:33,122 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 14:54:34,313 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 14:54:34,362 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 14:54:53,422 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 14:54:53,560 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:01:14,779 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:01:15,743 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:02:35,884 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 15:02:36,557 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:02:43,228 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:02:43,308 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:02:43,308 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 15:02:43,308 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 15:02:43,310 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 15:02:43,310 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 15:02:44,116 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 15:02:45,307 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:02:45,356 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:03:04,402 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:03:04,539 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:09:25,710 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:09:26,670 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:10:46,909 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 15:10:47,582 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:10:54,248 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:10:54,328 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:10:54,328 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 15:10:54,328 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 15:10:54,330 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 15:10:54,331 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 15:10:55,146 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 15:10:56,344 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:10:56,393 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:11:15,462 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:11:15,599 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:17:37,449 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:17:38,411 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:18:58,573 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 15:18:59,249 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:19:05,915 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:19:05,995 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:19:05,995 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 15:19:05,995 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 15:19:05,996 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 15:19:05,997 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 15:19:06,814 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 15:19:08,006 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:19:08,054 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:19:27,109 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:19:27,246 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:25:48,863 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:25:49,830 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:27:09,826 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 15:27:10,500 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:27:17,171 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:27:17,251 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:27:17,251 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 15:27:17,251 - fl_main - INFO - global aggregation process ...
+2024-10-16 15:27:17,251 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 15:27:17,251 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 15:27:17,251 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 15:27:17,251 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 15:27:17,251 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 15:27:17,251 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 15:27:17,251 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 15:27:17,251 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 15:28:44,731 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 15:28:44,745 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 15:28:50,218 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 15:28:50,254 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 15:30:39,689 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 15:30:39,963 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 15:31:03,015 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 15:31:03,208 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 15:31:05,124 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 15:31:05,147 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 15:31:05,180 - fl_main - INFO - global round : 8
+2024-10-16 15:31:05,180 - fl_main - INFO - the random client id to test accuracy : f_00004
+2024-10-16 15:31:05,180 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 15:31:05,182 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 15:31:05,199 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 15:31:06,019 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 15:31:07,213 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:31:07,263 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:31:26,315 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:31:26,453 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:37:47,828 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:37:48,791 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:39:08,888 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 15:39:09,566 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:39:16,231 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:39:16,311 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:39:16,326 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 15:39:16,327 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 15:39:16,328 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 15:39:16,329 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 15:39:17,145 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 15:39:18,336 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:39:18,385 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:39:37,449 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:39:37,586 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:45:58,746 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:45:59,705 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:47:19,691 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 15:47:20,364 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:47:27,032 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:47:27,112 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:47:27,112 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 15:47:27,112 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 15:47:27,114 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 15:47:27,114 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 15:47:27,947 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 15:47:29,139 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:47:29,188 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:47:48,239 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:47:48,377 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 15:54:09,581 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 15:54:10,552 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 15:55:30,932 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 15:55:31,609 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 15:55:38,274 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 15:55:38,354 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 15:55:38,354 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 15:55:38,354 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 15:55:38,356 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 15:55:38,356 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 15:55:39,172 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 15:55:40,363 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 15:55:40,412 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 15:55:59,457 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 15:55:59,596 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:02:21,015 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:02:21,974 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:03:42,033 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:03:42,709 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:03:49,374 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:03:49,454 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:03:49,454 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 16:03:49,454 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 16:03:50,251 - fl_main - INFO - global round [8] client_dict[f_00004].accuracy : 0.950500
+2024-10-16 16:03:50,251 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 16:03:50,251 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 16:03:51,070 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 16:03:52,261 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:03:52,310 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:04:11,361 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 16:04:11,499 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:10:32,925 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:10:33,887 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:11:53,936 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:11:54,613 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:12:01,483 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:12:01,563 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:12:01,563 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 16:12:01,563 - fl_main - INFO - global aggregation process ...
+2024-10-16 16:12:01,564 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 16:12:01,564 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 16:12:01,564 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 16:12:01,564 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 16:12:01,564 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 16:12:01,564 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 16:12:01,564 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 16:12:01,564 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 16:13:29,098 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 16:13:29,112 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 16:13:34,585 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 16:13:34,622 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 16:15:24,073 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 16:15:24,347 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 16:15:47,474 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 16:15:47,667 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 16:15:49,584 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 16:15:49,607 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 16:15:49,640 - fl_main - INFO - global round : 9
+2024-10-16 16:15:49,640 - fl_main - INFO - the random client id to test accuracy : f_00004
+2024-10-16 16:15:49,640 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 16:15:49,641 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 16:15:49,658 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 16:15:50,473 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 16:15:51,666 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:15:51,717 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:16:10,820 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 16:16:10,959 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:22:32,320 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:22:33,289 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:23:53,322 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:23:53,994 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:24:00,662 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:24:00,742 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:24:00,757 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 16:24:00,757 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 16:24:00,759 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 16:24:00,759 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 16:24:01,574 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 16:24:02,765 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:24:02,814 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:24:21,904 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 16:24:22,041 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:30:43,248 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:30:44,207 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:32:04,746 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:32:05,419 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:32:12,061 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:32:12,140 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:32:12,140 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 16:32:12,141 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 16:32:12,142 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 16:32:12,143 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 16:32:12,935 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 16:32:14,122 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:32:14,170 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:32:33,153 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 18s
+2024-10-16 16:32:33,285 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:38:56,098 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 16:38:57,059 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:40:17,140 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:40:17,816 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:40:24,480 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:40:24,561 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:40:24,561 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 16:40:24,561 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 16:40:24,562 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 16:40:24,563 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 16:40:25,394 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 16:40:26,587 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:40:26,637 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:40:45,697 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 16:40:45,834 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:47:06,945 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:47:07,904 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:48:28,046 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:48:28,719 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:48:35,569 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:48:35,649 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:48:35,649 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 16:48:35,650 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 16:48:36,466 - fl_main - INFO - global round [9] client_dict[f_00004].accuracy : 0.954000
+2024-10-16 16:48:36,466 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 16:48:36,466 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 16:48:37,273 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 16:48:38,464 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 16:48:38,513 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 16:48:57,561 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 16:48:57,699 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 16:55:19,076 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 16:55:20,044 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 16:56:40,180 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 16:56:40,853 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 16:56:47,522 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 16:56:47,603 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 16:56:47,603 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 16:56:47,603 - fl_main - INFO - global aggregation process ...
+2024-10-16 16:56:47,603 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 16:56:47,603 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 16:56:47,603 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 16:56:47,603 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 16:56:47,603 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 16:56:47,603 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 16:56:47,603 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 16:56:47,603 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 16:58:15,251 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 16:58:15,265 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 16:58:20,738 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 16:58:20,776 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 17:00:10,223 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 17:00:10,498 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 17:00:33,626 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 17:00:33,819 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 17:00:35,735 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 17:00:35,758 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 17:00:35,791 - fl_main - INFO - global round : 10
+2024-10-16 17:00:35,791 - fl_main - INFO - the random client id to test accuracy : f_00002
+2024-10-16 17:00:35,791 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 17:00:35,793 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 17:00:35,809 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 17:00:36,642 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 17:00:37,834 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:00:37,883 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:00:56,937 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:00:57,074 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:07:18,186 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 17:07:19,145 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:08:39,185 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:08:39,861 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:08:46,536 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:08:46,616 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:08:46,631 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 17:08:46,632 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 17:08:46,633 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 17:08:46,633 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 17:08:47,460 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 17:08:48,654 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:08:48,703 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:09:07,782 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:09:07,921 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:15:29,663 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 17:15:30,626 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:16:50,763 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:16:51,436 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:16:58,099 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:16:58,179 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:16:58,179 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 17:16:58,179 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 17:16:58,998 - fl_main - INFO - global round [10] client_dict[f_00002].accuracy : 0.958900
+2024-10-16 17:16:58,998 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 17:16:58,998 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 17:16:59,807 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 17:17:01,147 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:17:01,195 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:17:20,269 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:17:20,406 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:23:42,777 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 17:23:43,743 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:25:04,026 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:25:04,701 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:25:11,373 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:25:11,454 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:25:11,454 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 17:25:11,454 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 17:25:11,455 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 17:25:11,456 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 17:25:12,273 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 17:25:13,465 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:25:13,513 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:25:32,636 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:25:32,773 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:31:54,214 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 17:31:55,173 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:33:15,223 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:33:15,900 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:33:22,569 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:33:22,651 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:33:22,651 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 17:33:22,651 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 17:33:22,653 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 17:33:22,653 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 17:33:23,471 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 17:33:24,663 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:33:24,713 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:33:43,975 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:33:44,112 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:40:05,543 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 17:40:06,502 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:41:26,525 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:41:27,200 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:41:33,881 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:41:33,961 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:41:33,961 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 17:41:33,961 - fl_main - INFO - global aggregation process ...
+2024-10-16 17:41:33,962 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 17:41:33,962 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 17:41:33,962 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 17:41:33,962 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 17:41:33,962 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 17:41:33,962 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 17:41:33,962 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 17:41:33,962 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 17:43:01,502 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 17:43:01,516 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 17:43:06,988 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 17:43:07,025 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 17:44:56,468 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 17:44:56,742 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 17:45:19,874 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 17:45:20,066 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 17:45:21,982 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 17:45:22,005 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 17:45:22,038 - fl_main - INFO - global round : 11
+2024-10-16 17:45:22,038 - fl_main - INFO - the random client id to test accuracy : f_00001
+2024-10-16 17:45:22,038 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 17:45:22,039 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 17:45:22,053 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 17:45:22,872 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 17:45:24,069 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:45:24,118 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:45:43,222 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:45:43,359 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 17:52:04,471 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 17:52:05,429 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 17:53:25,583 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 17:53:26,259 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 17:53:33,109 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 17:53:33,189 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 17:53:33,202 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 17:53:33,202 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 17:53:34,016 - fl_main - INFO - global round [11] client_dict[f_00001].accuracy : 0.963500
+2024-10-16 17:53:34,016 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 17:53:34,016 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 17:53:34,832 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 17:53:36,023 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 17:53:36,072 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 17:53:55,126 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 17:53:55,264 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:00:17,120 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 18:00:18,090 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:01:38,063 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 19s
+2024-10-16 18:01:38,740 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:01:45,404 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:01:45,484 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:01:45,484 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 18:01:45,484 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 18:01:45,485 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 18:01:45,486 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 18:01:46,334 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 18:01:47,525 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:01:47,574 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:02:06,674 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:02:06,812 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:08:27,985 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 18:08:28,943 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:09:49,146 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:09:49,819 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:09:56,498 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:09:56,578 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:09:56,578 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 18:09:56,578 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 18:09:56,579 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 18:09:56,580 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 18:09:57,408 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 18:09:58,600 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:09:58,649 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:10:17,705 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:10:17,842 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:16:39,410 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 18:16:40,368 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:18:00,437 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:18:01,110 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:18:07,779 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:18:07,859 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:18:07,859 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 18:18:07,859 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 18:18:07,860 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 18:18:07,861 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 18:18:08,939 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 18:18:10,130 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:18:10,179 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:18:29,228 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:18:29,365 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:24:50,697 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 18:24:51,656 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:26:12,434 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:26:13,114 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:26:19,807 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:26:19,887 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:26:19,887 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 18:26:19,888 - fl_main - INFO - global aggregation process ...
+2024-10-16 18:26:19,888 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 18:26:19,888 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 18:26:19,888 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 18:26:19,888 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 18:26:19,888 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 18:26:19,888 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 18:26:19,888 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 18:26:19,888 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 18:27:47,365 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 18:27:47,379 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 18:27:52,862 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 18:27:52,899 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 18:29:42,439 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 18:29:42,714 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 18:30:05,726 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 18:30:05,918 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 18:30:07,836 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 18:30:07,859 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 18:30:07,891 - fl_main - INFO - global round : 12
+2024-10-16 18:30:07,891 - fl_main - INFO - the random client id to test accuracy : f_00000
+2024-10-16 18:30:07,891 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 18:30:08,710 - fl_main - INFO - global round [12] client_dict[f_00000].accuracy : 0.965700
+2024-10-16 18:30:08,710 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 18:30:08,710 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 18:30:09,561 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 18:30:10,753 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:30:10,802 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:30:29,924 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:30:30,062 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:36:51,704 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 18:36:52,666 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:38:12,829 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:38:13,508 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:38:20,195 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:38:20,275 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:38:20,289 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 18:38:20,289 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 18:38:20,290 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 18:38:20,291 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 18:38:21,117 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 18:38:22,309 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:38:22,359 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:38:41,532 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:38:41,669 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:45:04,127 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 18:45:05,090 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:46:25,403 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:46:26,081 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:46:32,800 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:46:32,881 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:46:32,881 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 18:46:32,881 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 18:46:32,883 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 18:46:32,883 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 18:46:33,721 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 18:46:34,913 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:46:34,961 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:46:54,027 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:46:54,164 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 18:53:16,169 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 18:53:17,134 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 18:54:37,422 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 18:54:38,101 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 18:54:44,772 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 18:54:44,852 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 18:54:44,852 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 18:54:44,853 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 18:54:44,854 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 18:54:44,855 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 18:54:45,705 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 18:54:46,909 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 18:54:46,958 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 18:55:06,152 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 18:55:06,292 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:01:28,693 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 19:01:29,652 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:02:49,873 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:02:50,551 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:02:57,228 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:02:57,308 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:02:57,308 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 19:02:57,308 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 19:02:57,309 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 19:02:57,310 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 19:02:58,137 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 19:02:59,329 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:02:59,378 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:03:18,442 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:03:18,579 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:09:40,993 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 19:09:41,957 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:11:02,317 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:11:02,995 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:11:09,664 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:11:09,744 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:11:09,744 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 19:11:09,745 - fl_main - INFO - global aggregation process ...
+2024-10-16 19:11:09,745 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 19:11:09,745 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 19:11:09,745 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 19:11:09,745 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 19:11:09,745 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 19:11:09,745 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 19:11:09,745 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 19:11:09,745 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 19:12:37,356 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 19:12:37,370 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 19:12:42,842 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 19:12:42,879 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 19:14:32,387 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 19:14:32,661 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 19:14:55,711 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 19:14:55,904 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 19:14:57,820 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 19:14:57,843 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 19:14:57,875 - fl_main - INFO - global round : 13
+2024-10-16 19:14:57,875 - fl_main - INFO - the random client id to test accuracy : f_00002
+2024-10-16 19:14:57,875 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 19:14:57,876 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 19:14:57,891 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 19:14:58,736 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 19:14:59,928 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:14:59,977 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:15:19,137 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:15:19,274 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:21:41,253 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 19:21:42,217 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:23:02,601 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:23:03,281 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:23:09,957 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:23:10,037 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:23:10,053 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 19:23:10,053 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 19:23:10,054 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 19:23:10,055 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 19:23:10,864 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 19:23:12,057 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:23:12,106 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:23:31,357 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:23:31,495 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:29:53,604 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 19:29:54,571 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:31:15,002 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:31:15,684 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:31:22,391 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:31:22,471 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:31:22,471 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 19:31:22,471 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 19:31:23,286 - fl_main - INFO - global round [13] client_dict[f_00002].accuracy : 0.968000
+2024-10-16 19:31:23,287 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 19:31:23,287 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 19:31:24,118 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 19:31:25,317 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:31:25,367 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:31:44,597 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:31:44,736 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:38:06,933 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 19:38:07,897 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:39:28,395 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:39:29,073 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:39:35,754 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:39:35,834 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:39:35,834 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 19:39:35,835 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 19:39:35,836 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 19:39:35,837 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 19:39:36,675 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 19:39:37,869 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:39:37,918 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:39:57,065 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:39:57,203 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:46:19,459 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 19:46:20,422 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:47:40,484 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:47:41,159 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:47:47,858 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:47:47,940 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:47:47,940 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 19:47:47,941 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 19:47:47,942 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 19:47:47,943 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 19:47:48,784 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 19:47:49,980 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:47:50,028 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 19:48:09,189 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 19:48:09,326 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 19:54:32,552 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 23s
+2024-10-16 19:54:33,522 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 19:55:54,062 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 19:55:54,741 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 19:56:01,431 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 19:56:01,511 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 19:56:01,511 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 19:56:01,512 - fl_main - INFO - global aggregation process ...
+2024-10-16 19:56:01,512 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 19:56:01,512 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 19:56:01,512 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 19:56:01,512 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 19:56:01,512 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 19:56:01,512 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 19:56:01,512 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 19:56:01,512 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 19:57:28,987 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 19:57:29,001 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 19:57:34,478 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 19:57:34,515 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 19:59:24,182 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 19:59:24,457 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 19:59:47,451 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 19:59:47,643 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 19:59:49,560 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 19:59:49,583 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 19:59:49,615 - fl_main - INFO - global round : 14
+2024-10-16 19:59:49,615 - fl_main - INFO - the random client id to test accuracy : f_00003
+2024-10-16 19:59:49,615 - fl_main - INFO - ----- client id [f_00000] -----
+2024-10-16 19:59:49,617 - fl_main - INFO - client_dict[f_00000] training ...
+2024-10-16 19:59:49,631 - client_base - INFO - client_dict[f_00000] training epoch : 0
+2024-10-16 19:59:50,460 - fl_main - INFO - client_dict[f_00000] local model encrypting ...
+2024-10-16 19:59:51,653 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 19:59:51,703 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 20:00:10,969 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 20:00:11,108 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 20:06:33,412 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 20:06:34,376 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 20:07:54,512 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 20:07:55,187 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 20:08:01,926 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 20:08:02,007 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 20:08:02,021 - fl_main - INFO - Server receive client_dict[f_00000] info ...
+2024-10-16 20:08:02,021 - fl_main - INFO - ----- client id [f_00001] -----
+2024-10-16 20:08:02,022 - fl_main - INFO - client_dict[f_00001] training ...
+2024-10-16 20:08:02,023 - client_base - INFO - client_dict[f_00001] training epoch : 0
+2024-10-16 20:08:02,845 - fl_main - INFO - client_dict[f_00001] local model encrypting ...
+2024-10-16 20:08:04,037 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 20:08:04,087 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 20:08:23,165 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 20:08:23,302 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 20:14:45,467 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 20:14:46,433 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 20:16:06,506 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 20:16:07,180 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 20:16:13,850 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 20:16:13,930 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 20:16:13,930 - fl_main - INFO - Server receive client_dict[f_00001] info ...
+2024-10-16 20:16:13,931 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 20:16:13,932 - fl_main - INFO - client_dict[f_00002] training ...
+2024-10-16 20:16:13,933 - client_base - INFO - client_dict[f_00002] training epoch : 0
+2024-10-16 20:16:14,768 - fl_main - INFO - client_dict[f_00002] local model encrypting ...
+2024-10-16 20:16:16,005 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 20:16:16,085 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 20:16:35,235 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 20:16:35,370 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 20:22:57,249 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 21s
+2024-10-16 20:22:58,213 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 20:24:18,618 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 20:24:19,297 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 20:24:25,969 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 20:24:26,050 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 20:24:26,050 - fl_main - INFO - Server receive client_dict[f_00002] info ...
+2024-10-16 20:24:26,051 - fl_main - INFO - ----- client id [f_00003] -----
+2024-10-16 20:24:26,869 - fl_main - INFO - global round [14] client_dict[f_00003].accuracy : 0.970800
+2024-10-16 20:24:26,869 - fl_main - INFO - client_dict[f_00003] training ...
+2024-10-16 20:24:26,870 - client_base - INFO - client_dict[f_00003] training epoch : 0
+2024-10-16 20:24:27,696 - fl_main - INFO - client_dict[f_00003] local model encrypting ...
+2024-10-16 20:24:28,890 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 20:24:28,939 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 20:24:48,042 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 20:24:48,180 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 20:31:10,381 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 20:31:11,345 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 20:32:31,492 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 20:32:32,172 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 20:32:38,843 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 20:32:38,923 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 20:32:38,923 - fl_main - INFO - Server receive client_dict[f_00003] info ...
+2024-10-16 20:32:38,923 - fl_main - INFO - ----- client id [f_00004] -----
+2024-10-16 20:32:38,924 - fl_main - INFO - client_dict[f_00004] training ...
+2024-10-16 20:32:38,925 - client_base - INFO - client_dict[f_00004] training epoch : 0
+2024-10-16 20:32:39,747 - fl_main - INFO - client_dict[f_00004] local model encrypting ...
+2024-10-16 20:32:40,940 - fed_utils - INFO - encrypting key [conv1.weight].length : 150, cost time : 0m 1s
+2024-10-16 20:32:40,989 - fed_utils - INFO - encrypting key [conv1.bias].length : 6, cost time : 0m 0s
+2024-10-16 20:33:00,084 - fed_utils - INFO - encrypting key [conv2.weight].length : 2400, cost time : 0m 19s
+2024-10-16 20:33:00,222 - fed_utils - INFO - encrypting key [conv2.bias].length : 16, cost time : 0m 0s
+2024-10-16 20:39:22,282 - fed_utils - INFO - encrypting key [fc1.weight].length : 48000, cost time : 6m 22s
+2024-10-16 20:39:23,247 - fed_utils - INFO - encrypting key [fc1.bias].length : 120, cost time : 0m 0s
+2024-10-16 20:40:43,633 - fed_utils - INFO - encrypting key [fc2.weight].length : 10080, cost time : 1m 20s
+2024-10-16 20:40:44,312 - fed_utils - INFO - encrypting key [fc2.bias].length : 84, cost time : 0m 0s
+2024-10-16 20:40:50,992 - fed_utils - INFO - encrypting key [fc3.weight].length : 840, cost time : 0m 6s
+2024-10-16 20:40:51,073 - fed_utils - INFO - encrypting key [fc3.bias].length : 10, cost time : 0m 0s
+2024-10-16 20:40:51,073 - fl_main - INFO - Server receive client_dict[f_00004] info ...
+2024-10-16 20:40:51,074 - fl_main - INFO - global aggregation process ...
+2024-10-16 20:40:51,074 - fed_utils - INFO - server.n_data : 60000
+2024-10-16 20:40:51,074 - fed_utils - INFO - client_dict[f_00000].weight : 0.200000
+2024-10-16 20:40:51,074 - fed_utils - INFO - client_dict[f_00001].weight : 0.200000
+2024-10-16 20:40:51,074 - fed_utils - INFO - client_dict[f_00002].weight : 0.200000
+2024-10-16 20:40:51,074 - fed_utils - INFO - client_dict[f_00003].weight : 0.200000
+2024-10-16 20:40:51,074 - fed_utils - INFO - client_dict[f_00004].weight : 0.200000
+2024-10-16 20:40:51,074 - fed_utils - INFO - recover secret number by clients: 722.400000
+2024-10-16 20:40:51,074 - server_base - INFO - Server aggregate model with homomorphic encryption ...
+2024-10-16 20:42:18,644 - fed_utils - INFO - decrypting key [conv1.weight].shape [torch.Size([6, 1, 5, 5])]
+2024-10-16 20:42:18,658 - fed_utils - INFO - decrypting key [conv1.bias].shape [torch.Size([6])]
+2024-10-16 20:42:24,132 - fed_utils - INFO - decrypting key [conv2.weight].shape [torch.Size([16, 6, 5, 5])]
+2024-10-16 20:42:24,169 - fed_utils - INFO - decrypting key [conv2.bias].shape [torch.Size([16])]
+2024-10-16 20:44:13,765 - fed_utils - INFO - decrypting key [fc1.weight].shape [torch.Size([120, 400])]
+2024-10-16 20:44:14,040 - fed_utils - INFO - decrypting key [fc1.bias].shape [torch.Size([120])]
+2024-10-16 20:44:37,043 - fed_utils - INFO - decrypting key [fc2.weight].shape [torch.Size([84, 120])]
+2024-10-16 20:44:37,235 - fed_utils - INFO - decrypting key [fc2.bias].shape [torch.Size([84])]
+2024-10-16 20:44:39,150 - fed_utils - INFO - decrypting key [fc3.weight].shape [torch.Size([10, 84])]
+2024-10-16 20:44:39,173 - fed_utils - INFO - decrypting key [fc3.bias].shape [torch.Size([10])]
+2024-10-16 20:44:39,206 - fl_main - INFO - global round : 15
+2024-10-16 20:44:39,206 - fl_main - INFO - the random client id to test accuracy : f_00002
+2024-10-16 20:44:39,206 - fl_main - INFO - ----- client id [f_00002] -----
+2024-10-16 20:44:40,020 - fl_main - INFO - global round [15] client_dict[f_00002].accuracy : 0.971600
+2024-10-16 20:44:40,815 - fl_main - INFO - Final accuracy : 0.971600
