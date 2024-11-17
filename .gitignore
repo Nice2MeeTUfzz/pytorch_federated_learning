@@ -6,3 +6,4 @@ config
 security
 .idea
 .gitigonre
+/result.log

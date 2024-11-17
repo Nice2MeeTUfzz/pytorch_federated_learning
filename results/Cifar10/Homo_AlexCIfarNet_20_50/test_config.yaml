@@ -1,12 +1,12 @@
 system:
-  num_client: 5
+  num_client: 20
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
   dataset: "CIFAR10"
   iid: True
   model: "AlexCifarNet"
   i_seed: 235235
-  num_round: 10
+  num_round: 50
   res_root: 'results/test'
 
 client:
