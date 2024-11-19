@@ -179,9 +179,10 @@ def fed_run():
         random_client_id = random.choice(trainset_config['users'])
         logger.info("the random client id to test accuracy : %s", random_client_id)
         # keys list to encrypt
-        # Construct_LeNet = ['conv1.weight', 'conv1.bias', 'fc3.weight', 'fc3.bias']
+        Construct_LeNet = ['conv1.weight', 'conv1.bias', 'fc3.weight', 'fc3.bias']
         Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'classifier.4.weight', 'classifier.4.bias']
-        keys_to_encrypt = Construct_AlexCifarNet
+        Non_list = []
+        keys_to_encrypt = Construct_LeNet
         for client_id in pbar_clients:
             if client_id != random_client_id and global_round == config["system"]["num_round"]:
                 continue
@@ -257,7 +258,7 @@ def fed_run():
             # global_state_dict, avg_loss, _ = fed_server.agg()
 
             # homomorphic encrypted aggregation
-            global_state_dict, avg_loss, _ = fed_server.agg_hm_en(keys_to_encrypt=keys_to_encrypt)
+            global_state_dict, avg_loss, _ = fed_server.agg_hm_en()
 
             # decrypt the encrypted global model with server.sk
             global_state_dict = model_decrypt(global_state_dict, fed_server.private_key,

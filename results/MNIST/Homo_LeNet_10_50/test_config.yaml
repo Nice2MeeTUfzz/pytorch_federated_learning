@@ -1,13 +1,13 @@
 system:
-  num_client: 5
+  num_client: 10
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
   dataset: "MNIST"
   iid: True
   model: "LeNet"
   i_seed: 235235
-  num_round: 10
-  res_root: 'results/'
+  num_round: 50
+  res_root: 'results/test'
 
 client:
   fed_algo: 'FedAvg'

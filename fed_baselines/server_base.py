@@ -126,7 +126,7 @@ class FedServer(object):
         logger.info("Public key : %s", self.public_key)
         logger.info("Private key : %s", self.private_key)
 
-    def agg_hm_en(self, keys_to_encrypt):
+    def agg_hm_en(self):
         """
         Server aggregates models using homomorphic encryption from connected clients.
         :return: model_state: Updated global model after aggregation
