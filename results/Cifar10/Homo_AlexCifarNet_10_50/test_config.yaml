@@ -1,5 +1,5 @@
 system:
-  num_client: 5
+  num_client: 10
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
   dataset: "CIFAR10"
