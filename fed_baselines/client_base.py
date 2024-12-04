@@ -35,7 +35,7 @@ class FedClient(object):
         self._epoch = epoch
         self._batch_size = batch_size
         self._lr = lr
-        self._momentum = 0.9
+        self._momentum = 0.5
         self.num_workers = 4
         self.loss_rec = []
         self.n_data = 0
@@ -124,6 +124,8 @@ class FedClient(object):
         start_time = time.time()
         state_dict = self.model.state_dict()
         for key in state_dict:
+            # if self.model.state_dict()[key].dtype == torch.int64:
+            #     self.model.state_dict()[key] = self.model.state_dict()[key].to(torch.float64)
             secret_tensor = torch.tensor(self.secret_number, dtype=torch.float64, device=state_dict[key].device)
             state_dict[key] -= secret_tensor
         inter_time = time.time() - start_time
@@ -140,8 +142,8 @@ class FedClient(object):
                                   num_workers=self.num_workers)
 
         self.model.to(self._device)
-        optimizer = torch.optim.SGD(self.model.parameters(), lr=self._lr, momentum=self._momentum)
-        # optimizer = torch.optim.Adam(self.model.parameters(), lr=self._lr, weight_decay=1e-4)
+        # optimizer = torch.optim.SGD(self.model.parameters(), lr=self._lr, momentum=self._momentum)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=self._lr, weight_decay=1e-4)
         loss_func = nn.CrossEntropyLoss()
 
         # Training process

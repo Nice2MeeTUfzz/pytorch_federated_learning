@@ -214,7 +214,7 @@ def generate_secret_number(seed):
     :return: secret number
     """
     random.seed(seed)
-    bit_length = 24 # max
+    bit_length = 32 # max
     min_value = 1 << (bit_length - 1)
     max_value = (1 << bit_length) - 1
     random_integer = random.randint(min_value, max_value)
@@ -235,12 +235,15 @@ def generate_and_split_secret_number(client_dict, seed):
     logger.info('secret_number : %f', secret_number)
     random.seed(seed)
     parts = []
+    remaining_secret = secret_number
     for _ in range(n-1):
-        max_val = secret_number-sum(parts)
-        part = random.randint(1, max_val)
+        if remaining_secret >n-len(parts):
+            part = random.randint(1, remaining_secret-(n-len(parts)))
+        else:
+            part = remaining_secret
         parts.append(part)
-    last_part = secret_number - sum(parts)
-    parts.append(last_part)
+        remaining_secret -= part
+    parts.append(remaining_secret)
 
     random.shuffle(parts)
 

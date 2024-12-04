@@ -1,17 +1,17 @@
 system:
-  num_client: 15
+  num_client: 200
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
   dataset: "MNIST"
   iid: True
-  model: "LeNet"
+  model: "CNN"
   i_seed: 235235
-  num_round: 50
+  num_round: 40
   res_root: 'results/test'
 
 client:
   fed_algo: 'FedAvg'
-  lr: 0.001
+  lr: 0.01
   # cifar10:16 MNIST:64
   batch_size: 64
   num_local_epoch: 1
