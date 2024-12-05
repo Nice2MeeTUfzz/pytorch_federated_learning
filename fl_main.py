@@ -183,7 +183,7 @@ def fed_run():
         Construct_AlexCifarNet = ['features.0.weight', 'features.0.bias', 'classifier.4.weight', 'classifier.4.bias']
         Construct_CNN = ['conv1.weight','conv1.bias','fc.bias']
         Non_list = []
-        keys_to_encrypt = Non_list
+        keys_to_encrypt = Construct_CNN
         for client_id in pbar_clients:
             if client_id != random_client_id and global_round == config["system"]["num_round"]:
                 continue

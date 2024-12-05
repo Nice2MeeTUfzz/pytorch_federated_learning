@@ -14,7 +14,7 @@ client:
   lr: 0.01
   # cifar10:16 MNIST:64
   batch_size: 64
-  num_local_epoch: 10
+  num_local_epoch: 5
   # add_noise: True or False
   add_noise: False
   sigma: 2

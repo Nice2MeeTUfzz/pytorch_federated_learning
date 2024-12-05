@@ -1,5 +1,5 @@
 system:
-  num_client: 50
+  num_client: 90
   num_local_class: 10
   # CIFAR10, MNIST, CIFAR100
   dataset: "MNIST"
@@ -14,7 +14,7 @@ client:
   lr: 0.01
   # cifar10:16 MNIST:64
   batch_size: 64
-  num_local_epoch: 10
+  num_local_epoch: 1
   # add_noise: True or False
   add_noise: False
   sigma: 2
